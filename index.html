@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rustic Garden · Mandevu — Agroecology & Land Intelligence</title>
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --soil: #0d1a12;
+            --deep: #091410;
+            --moss: #2a4230;
+            --aqua: #3bc8c0;
+            --sage: #7aad7c;
+            --paper: #f2ede3;
+            --cream: #e8e0d0;
+            --clay: #c26a2d;
+        }
+
+        body {
+            font-family: 'Lora', serif;
+            background: var(--deep);
+            color: var(--cream);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* --- NAVIGATION --- */
+        nav {
+            padding: 20px 48px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(9, 20, 16, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--sage);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- HERO SECTION --- */
+        #hero {
+            padding: 100px 48px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--paper);
+            line-height: 1.1;
+        }
+
+        .hero-title em { color: var(--sage); font-style: italic; }
+
+        .coords-box {
+            font-family: 'Space Mono', monospace;
+            font-size: 0.8rem;
+            color: var(--aqua);
+            border: 1px solid rgba(59, 200, 192, 0.3);
+            padding: 15px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+
+        /* --- MAP SECTION --- */
+        #map-container {
+            height: 500px;
+            width: 100%;
+            border: 1px solid var(--moss);
+            border-radius: 4px;
+            background: var(--soil);
+        }
+
+        .map-section {
+            padding: 60px 48px;
+            background: var(--soil);
+        }
+
+        /* Custom Popup Style */
+        .leaflet-popup-content-wrapper {
+            background: var(--deep);
+            color: var(--paper);
+            font-family: 'Space Mono', monospace;
+            border: 1px solid var(--aqua);
+        }
+
+        .leaflet-popup-tip { background: var(--aqua); }
+
+        @media (max-width: 900px) {
+            #hero { grid-template-columns: 1fr; padding: 60px 20px; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="nav-brand">Rustic Garden</div>
+        <div style="font-family: 'Space Mono'; font-size: 0.7rem; color: var(--clay);">LOCATION: KENYA</div>
+    </nav>
+
+    <section id="hero">
+        <div>
+            <p style="font-family: 'Space Mono'; color: var(--aqua); text-transform: uppercase; letter-spacing: 3px;">Land Intelligence</p>
+            <h1 class="hero-title">Cultivating <em>Mandevu</em> Home.</h1>
+            <p style="margin-top: 20px; opacity: 0.8;">Agroecology and precise land management at Kwa Nyuki. Utilizing geospatial data to restore soil health and manage water resources efficiently.</p>
+            <div class="coords-box">
+                Lat: -1.28544 | Lng: 36.73423 
+            </div>
+        </div>
+        <div id="map-container"></div>
+    </section>
+
+    <section class="map-section">
+        <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Geospatial Context</h2>
+        <p style="max-width: 600px; margin-bottom: 40px;">This interactive map shows the precise boundaries of the Mandevu property and the location of the Kwa Nyuki landmark as defined in our land records.</p>
+    </section>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>
+        // Initialize the map centered on Mandevu 
+        var map = L.map('map-container').setView([-1.2854, 36.7342], 18);
+
+        // Add a dark-themed map layer (using CartoDB Dark Matter)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; OpenStreetMap &copy; CARTO'
+        }).addTo(map);
+
+        // Define the Mandevu Home Polygon from your KML 
+        var mandevuHomeCoords = [
+            [-1.285481614498344, 36.73400158195487],
+            [-1.285473463019964, 36.73439918818473],
+            [-1.285224884502848, 36.73436365073541],
+            [-1.285246728019313, 36.7339726855714],
+            [-1.285481614498344, 36.73400158195487]
+        ];
+
+        // Add the polygon to the map
+        var polygon = L.polygon(mandevuHomeCoords, {
+            color: '#3bc8c0',
+            fillColor: '#3bc8c0',
+            fillOpacity: 0.2,
+            weight: 2
+        }).addTo(map).bindPopup("<b>Mandevu Home</b><br>Primary Residence Boundary.");
+
+        // Add the Kwa Nyuki Marker 
+        var marker = L.marker([-1.2854443, 36.7342274]).addTo(map)
+            .bindPopup("<b>Kwa Nyuki</b><br>Reference Landmark.")
+            .openPopup();
+
+    </script>
+</body>
+</html>
