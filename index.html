@@ -6,388 +6,166 @@
 <title>Health By Nature</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --green: #2d6a2d;
-    --green-light: #4caf50;
-    --green-pale: #e8f5e9;
-    --orange: #e65100;
-    --orange-light: #ff8f00;
-    --cream: #fffde7;
-    --brown: #4e342e;
-    --white: #ffffff;
-    --shadow: 0 4px 18px rgba(0,0,0,0.13);
-  }
+:root {
+  --green:#2d6a2d; --green-dark:#1b5e20; --green-light:#4caf50; --green-pale:#e8f5e9;
+  --orange:#e65100; --orange-light:#ff8f00; --cream:#fffde7; --brown:#4e342e;
+  --charcoal:#2c2c2c; --white:#ffffff; --shadow:0 4px 18px rgba(0,0,0,0.13);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Lato',sans-serif;background:var(--cream);color:var(--brown);overflow-x:hidden;}
 
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+/* HEADER */
+header{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;padding:16px 16px 12px;text-align:center;position:sticky;top:0;z-index:200;box-shadow:0 3px 12px rgba(0,0,0,0.25);}
+.logo-row{display:flex;align-items:center;justify-content:center;gap:12px;}
+.logo-icon{width:50px;height:50px;flex-shrink:0;}
+.brand-name{font-family:'Playfair Display',serif;font-size:1.45rem;font-weight:900;color:#fff;line-height:1.1;}
+.tagline{font-size:0.74rem;color:#a5d6a7;font-style:italic;}
 
-  body {
-    font-family: 'Lato', sans-serif;
-    background: var(--cream);
-    color: var(--brown);
-    overflow-x: hidden;
-  }
+/* NAV */
+nav{display:flex;overflow-x:auto;gap:7px;padding:10px 12px;background:#fff;border-bottom:2px solid var(--green-pale);scrollbar-width:none;}
+nav::-webkit-scrollbar{display:none;}
+nav a{white-space:nowrap;padding:6px 14px;border-radius:20px;font-size:0.79rem;font-weight:700;text-decoration:none;background:var(--green-pale);color:var(--green);transition:background .2s,color .2s;border:1.5px solid transparent;}
+nav a:hover,nav a.active{background:var(--green);color:#fff;}
 
-  /* ── HEADER ── */
-  header {
-    background: linear-gradient(135deg, var(--green) 0%, #1b5e20 100%);
-    color: white;
-    padding: 18px 16px 14px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
-  }
+/* SECTIONS */
+section{padding:0 0 24px;display:none;}
+section.active{display:block;}
 
-  .logo-row {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    margin-bottom: 4px;
-  }
+/* HERO */
+.hero{background:linear-gradient(160deg,var(--green-dark) 0%,var(--green) 55%,var(--orange) 100%);padding:38px 20px 44px;text-align:center;color:#fff;position:relative;overflow:hidden;}
+.hero h1{font-family:'Playfair Display',serif;font-size:1.9rem;margin-bottom:10px;line-height:1.2;}
+.hero p{font-size:.92rem;color:#c8e6c9;margin-bottom:20px;max-width:300px;margin-left:auto;margin-right:auto;}
+.hero-btn{display:inline-block;background:var(--orange);color:#fff;padding:11px 28px;border-radius:30px;font-weight:700;font-size:.9rem;text-decoration:none;box-shadow:0 4px 14px rgba(230,81,0,.4);}
 
-  /* Carrot-juice glass logo */
-  .logo-icon {
-    width: 52px;
-    height: 52px;
-    flex-shrink: 0;
-  }
+/* UTIL */
+.sec-header{padding:20px 16px 0;}
+.section-title{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--green);margin-bottom:4px;border-left:4px solid var(--orange);padding-left:10px;}
+.section-sub{font-size:.8rem;color:#777;margin-bottom:14px;padding-left:14px;}
 
-  .brand-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.55rem;
-    font-weight: 900;
-    letter-spacing: 1px;
-    color: #fff;
-    line-height: 1.1;
-  }
+/* CARD */
+.card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);margin:0 16px 18px;}
+.card img{width:100%;height:185px;object-fit:cover;}
+.card-body{padding:14px 16px 18px;}
+.card-badge{display:inline-block;background:var(--green-pale);color:var(--green);font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:1px;padding:3px 10px;border-radius:12px;margin-bottom:8px;}
+.card-title{font-family:'Playfair Display',serif;font-size:1.15rem;color:var(--brown);margin-bottom:6px;}
+.card-desc{font-size:.84rem;color:#666;line-height:1.65;margin-bottom:12px;}
+.benefits-list{list-style:none;margin-bottom:14px;}
+.benefits-list li{font-size:.82rem;color:#444;padding:3px 0 3px 22px;position:relative;line-height:1.5;}
+.benefits-list li::before{content:'✓';position:absolute;left:0;color:var(--orange);font-weight:700;}
+.order-btn{display:block;width:100%;text-align:center;background:var(--green);color:#fff;padding:12px;border-radius:10px;font-weight:700;font-size:.88rem;text-decoration:none;}
+.order-btn.orange{background:var(--orange);}
 
-  .tagline {
-    font-size: 0.78rem;
-    color: #a5d6a7;
-    font-style: italic;
-    letter-spacing: 0.5px;
-  }
+/* FEATURES GRID */
+.features-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:16px 16px 4px;}
+.feature-tile{background:#fff;border-radius:14px;padding:14px 10px;text-align:center;box-shadow:var(--shadow);}
+.feature-tile .icon{font-size:1.7rem;margin-bottom:5px;}
+.feature-tile p{font-size:.76rem;color:#555;font-weight:600;}
 
-  /* ── NAV PILLS ── */
-  nav {
-    display: flex;
-    overflow-x: auto;
-    gap: 8px;
-    padding: 12px 14px;
-    background: #fff;
-    border-bottom: 2px solid var(--green-pale);
-    scrollbar-width: none;
-  }
-  nav::-webkit-scrollbar { display: none; }
+/* PREVIEW ROW */
+.products-preview{display:flex;gap:12px;overflow-x:auto;padding:0 16px 10px;scrollbar-width:none;}
+.products-preview::-webkit-scrollbar{display:none;}
+.preview-card{min-width:130px;background:#fff;border-radius:14px;overflow:hidden;box-shadow:var(--shadow);flex-shrink:0;cursor:pointer;}
+.preview-card img{width:130px;height:100px;object-fit:cover;}
+.preview-card .pname{padding:7px 9px;font-size:.75rem;font-weight:700;color:var(--green);}
 
-  nav a {
-    white-space: nowrap;
-    padding: 7px 16px;
-    border-radius: 20px;
-    font-size: 0.82rem;
-    font-weight: 700;
-    text-decoration: none;
-    background: var(--green-pale);
-    color: var(--green);
-    transition: background 0.2s, color 0.2s;
-    border: 1.5px solid transparent;
-  }
-  nav a:hover, nav a.active {
-    background: var(--green);
-    color: #fff;
-    border-color: var(--green);
-  }
+/* JANE CARD */
+.jane-card{background:linear-gradient(135deg,var(--green-dark),var(--green));border-radius:18px;padding:20px;color:#fff;box-shadow:0 6px 24px rgba(0,0,0,.2);text-align:center;margin:0 16px 0;}
+.jane-avatar{width:68px;height:68px;border-radius:50%;margin:0 auto 10px;background:linear-gradient(135deg,#a5d6a7,var(--green-light));display:flex;align-items:center;justify-content:center;font-size:1.9rem;border:3px solid rgba(255,255,255,.3);}
+.jane-card h3{font-family:'Playfair Display',serif;font-size:1.05rem;margin-bottom:4px;}
+.jane-card p{font-size:.8rem;color:#c8e6c9;margin-bottom:14px;line-height:1.5;}
+.jane-btns{display:flex;gap:10px;}
+.jane-btn{flex:1;padding:10px 8px;border-radius:10px;font-weight:700;font-size:.82rem;text-decoration:none;text-align:center;}
+.jane-btn.call{background:var(--orange);color:#fff;}
+.jane-btn.wa{background:#25d366;color:#fff;}
 
-  /* ── HERO ── */
-  .hero {
-    background: linear-gradient(160deg, #1b5e20 0%, #2d6a2d 55%, #e65100 100%);
-    padding: 40px 20px 48px;
-    text-align: center;
-    color: white;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -40px; right: -40px;
-    width: 200px; height: 200px;
-    background: rgba(255,255,255,0.06);
-    border-radius: 50%;
-  }
-  .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2rem;
-    margin-bottom: 10px;
-    line-height: 1.2;
-  }
-  .hero p {
-    font-size: 0.95rem;
-    color: #c8e6c9;
-    margin-bottom: 22px;
-    max-width: 320px;
-    margin-left: auto; margin-right: auto;
-  }
-  .hero-btn {
-    display: inline-block;
-    background: var(--orange);
-    color: white;
-    padding: 12px 30px;
-    border-radius: 30px;
-    font-weight: 700;
-    font-size: 0.95rem;
-    text-decoration: none;
-    box-shadow: 0 4px 14px rgba(230,81,0,0.4);
-    transition: transform 0.2s;
-  }
-  .hero-btn:active { transform: scale(0.97); }
+/* ════ CHARCOAL DARK THEME ════ */
+.charcoal-hero{background:linear-gradient(160deg,#111,#2c2c2c 60%,#3a3a3a);padding:30px 20px 34px;text-align:center;color:#fff;position:relative;overflow:hidden;}
+.charcoal-hero h2{font-family:'Playfair Display',serif;font-size:1.65rem;margin-bottom:8px;line-height:1.2;}
+.charcoal-hero p{font-size:.86rem;color:#bbb;margin-bottom:16px;max-width:300px;margin-left:auto;margin-right:auto;}
 
-  /* ── SECTIONS ── */
-  section {
-    padding: 28px 16px 10px;
-    display: none;
-  }
-  section.active { display: block; }
+.gender-tabs{display:flex;margin:16px 16px 0;border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+.gtab{flex:1;padding:12px 10px;text-align:center;font-weight:700;font-size:.88rem;cursor:pointer;background:#f0f0f0;color:#555;border:none;transition:background .2s;}
+.gtab.on{background:var(--charcoal);color:#fff;}
+.gtab:first-child{border-radius:12px 0 0 12px;}
+.gtab:last-child{border-radius:0 12px 12px 0;}
 
-  .section-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: var(--green);
-    margin-bottom: 6px;
-    border-left: 4px solid var(--orange);
-    padding-left: 10px;
-  }
-  .section-sub {
-    font-size: 0.83rem;
-    color: #777;
-    margin-bottom: 18px;
-    padding-left: 14px;
-  }
+.gender-content{display:none;}
+.gender-content.active{display:block;}
 
-  /* ── PRODUCT CARD ── */
-  .product-card {
-    background: #fff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    margin-bottom: 20px;
-    transition: transform 0.2s;
-  }
-  .product-card:active { transform: scale(0.98); }
+.benefit-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 16px 0;}
+.benefit-pill{background:#fff;border-radius:14px;padding:13px 10px;box-shadow:var(--shadow);text-align:center;}
+.benefit-pill .bicon{font-size:1.55rem;margin-bottom:5px;}
+.benefit-pill .btitle{font-size:.77rem;font-weight:700;color:var(--charcoal);margin-bottom:3px;}
+.benefit-pill .bdesc{font-size:.69rem;color:#777;line-height:1.4;}
 
-  .product-card img {
-    width: 100%;
-    height: 190px;
-    object-fit: cover;
-  }
+/* PRICING TIERS */
+.pricing-section{margin:20px 16px 0;}
+.pricing-label{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--charcoal);margin-bottom:12px;border-left:4px solid var(--orange);padding-left:10px;}
+.tier-card{background:#fff;border-radius:16px;padding:16px 14px;box-shadow:var(--shadow);margin-bottom:12px;display:flex;align-items:center;gap:12px;border:2px solid transparent;}
+.tier-card.featured{border-color:var(--orange);background:linear-gradient(135deg,#fff5e1,#fff);}
+.tier-icon{font-size:2rem;flex-shrink:0;}
+.tier-info{flex:1;}
+.tier-name{font-weight:700;font-size:.95rem;color:var(--charcoal);margin-bottom:2px;}
+.tier-desc{font-size:.72rem;color:#888;margin-bottom:5px;}
+.tier-price{font-size:1.1rem;font-weight:900;color:var(--orange);}
+.tier-badge{display:inline-block;background:var(--orange);color:#fff;font-size:.58rem;font-weight:700;padding:2px 6px;border-radius:7px;text-transform:uppercase;margin-left:5px;vertical-align:middle;}
+.tier-btn{padding:9px 14px;border-radius:10px;background:var(--charcoal);color:#fff;font-size:.78rem;font-weight:700;text-decoration:none;flex-shrink:0;white-space:nowrap;}
+.tier-btn.orange{background:var(--orange);}
 
-  .card-body {
-    padding: 14px 16px 18px;
-  }
+/* ════ SHOP PAGE ════ */
+.shop-hero{background:linear-gradient(160deg,var(--green-dark),var(--green),#558b2f);padding:26px 20px 30px;text-align:center;color:#fff;}
+.shop-hero h2{font-family:'Playfair Display',serif;font-size:1.55rem;margin-bottom:5px;}
+.shop-hero p{font-size:.83rem;color:#c8e6c9;}
 
-  .card-badge {
-    display: inline-block;
-    background: var(--green-pale);
-    color: var(--green);
-    font-size: 0.7rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    padding: 3px 10px;
-    border-radius: 12px;
-    margin-bottom: 8px;
-  }
+.shop-filter{display:flex;gap:8px;overflow-x:auto;padding:12px 16px 4px;scrollbar-width:none;}
+.shop-filter::-webkit-scrollbar{display:none;}
+.filter-btn{white-space:nowrap;padding:6px 14px;border-radius:20px;font-size:.78rem;font-weight:700;background:var(--green-pale);color:var(--green);border:none;cursor:pointer;transition:background .2s;}
+.filter-btn.on{background:var(--green);color:#fff;}
 
-  .card-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-    color: var(--brown);
-    margin-bottom: 6px;
-  }
+.shop-grid{padding:10px 16px;}
+.shop-item{background:#fff;border-radius:16px;overflow:hidden;box-shadow:var(--shadow);margin-bottom:14px;display:flex;border:2px solid transparent;}
+.shop-item.best{border-color:var(--orange);}
+.shop-item-img img{width:108px;height:108px;object-fit:cover;display:block;}
+.shop-item-body{padding:11px 13px;flex:1;display:flex;flex-direction:column;justify-content:space-between;}
+.shop-item-name{font-weight:700;font-size:.88rem;color:var(--brown);margin-bottom:1px;}
+.shop-item-size{font-size:.71rem;color:#888;margin-bottom:4px;}
+.shop-item-price{font-size:.98rem;font-weight:900;color:var(--orange);margin-bottom:7px;}
+.shop-item-btn{display:inline-block;background:var(--green);color:#fff;padding:7px 12px;border-radius:8px;font-size:.74rem;font-weight:700;text-decoration:none;text-align:center;}
+.shop-item-btn.orange{background:var(--orange);}
 
-  .card-desc {
-    font-size: 0.85rem;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 12px;
-  }
+/* ABOUT */
+.about-hero{background:linear-gradient(135deg,var(--green-dark),var(--green),#558b2f);padding:30px 20px;text-align:center;color:#fff;}
+.about-hero h2{font-family:'Playfair Display',serif;font-size:1.55rem;margin-bottom:5px;}
+.about-hero p{font-size:.83rem;color:#c8e6c9;}
+.about-box{background:#fff;border-radius:16px;padding:16px;box-shadow:var(--shadow);margin:14px 16px 0;}
+.about-box h3{font-family:'Playfair Display',serif;font-size:1.02rem;color:var(--green);margin-bottom:8px;}
+.about-box p{font-size:.83rem;color:#555;line-height:1.7;}
+.check-row{display:flex;gap:8px;margin-bottom:7px;align-items:flex-start;}
+.check-row span{font-size:.82rem;color:#555;}
 
-  .benefits-list {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 14px;
-  }
-  .benefits-list li {
-    font-size: 0.83rem;
-    color: var(--green);
-    padding: 3px 0;
-    padding-left: 20px;
-    position: relative;
-  }
-  .benefits-list li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--orange);
-    font-weight: 700;
-  }
+/* CONTACT */
+.contact-card{background:var(--green);color:#fff;border-radius:16px;padding:18px;margin:14px 16px 0;box-shadow:0 6px 24px rgba(0,0,0,.18);}
+.contact-card h3{font-family:'Playfair Display',serif;font-size:.98rem;margin-bottom:10px;color:#c8e6c9;}
+.c-item{display:flex;align-items:center;gap:10px;font-size:.86rem;margin-bottom:8px;}
+.wa-btn{display:block;background:#25d366;color:#fff;text-align:center;padding:14px;border-radius:12px;font-weight:700;font-size:.93rem;text-decoration:none;margin:14px 16px 0;box-shadow:0 4px 14px rgba(37,211,102,.35);}
 
-  .order-btn {
-    display: block;
-    width: 100%;
-    text-align: center;
-    background: var(--green);
-    color: white;
-    padding: 11px;
-    border-radius: 10px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    text-decoration: none;
-    border: none;
-    cursor: pointer;
-  }
-  .order-btn:active { background: #1b5e20; }
-
-  /* ── ABOUT ── */
-  .about-box {
-    background: #fff;
-    border-radius: 16px;
-    padding: 20px;
-    box-shadow: var(--shadow);
-    margin-bottom: 18px;
-  }
-  .about-box p {
-    font-size: 0.88rem;
-    line-height: 1.7;
-    color: #555;
-  }
-  .about-box h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    color: var(--green);
-    margin-bottom: 8px;
-  }
-
-  /* ── CONTACT ── */
-  .contact-card {
-    background: var(--green);
-    color: white;
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 14px;
-    box-shadow: var(--shadow);
-  }
-  .contact-card h3 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
-    margin-bottom: 10px;
-    color: #c8e6c9;
-  }
-  .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    margin-bottom: 8px;
-  }
-  .contact-icon { font-size: 1.1rem; }
-
-  .whatsapp-btn {
-    display: block;
-    background: #25d366;
-    color: white;
-    text-align: center;
-    padding: 14px;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 1rem;
-    text-decoration: none;
-    margin-top: 6px;
-    box-shadow: 0 4px 14px rgba(37,211,102,0.35);
-  }
-
-  /* ── FOOTER ── */
-  footer {
-    background: var(--brown);
-    color: #bcaaa4;
-    text-align: center;
-    padding: 18px 16px;
-    font-size: 0.78rem;
-    margin-top: 16px;
-  }
-  footer strong { color: #fff; }
-
-  /* ── HOME PAGE specific ── */
-  #home { display: block; }
-
-  .features-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
-    margin: 20px 0 10px;
-  }
-  .feature-tile {
-    background: #fff;
-    border-radius: 14px;
-    padding: 16px 12px;
-    text-align: center;
-    box-shadow: var(--shadow);
-  }
-  .feature-tile .icon { font-size: 1.8rem; margin-bottom: 6px; }
-  .feature-tile p { font-size: 0.78rem; color: #555; font-weight: 600; }
-
-  .products-preview {
-    display: flex;
-    gap: 12px;
-    overflow-x: auto;
-    padding-bottom: 10px;
-    scrollbar-width: none;
-  }
-  .products-preview::-webkit-scrollbar { display: none; }
-
-  .preview-card {
-    min-width: 140px;
-    background: #fff;
-    border-radius: 14px;
-    overflow: hidden;
-    box-shadow: var(--shadow);
-    flex-shrink: 0;
-    cursor: pointer;
-  }
-  .preview-card img {
-    width: 100%;
-    height: 110px;
-    object-fit: cover;
-  }
-  .preview-card .pname {
-    padding: 8px 10px;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: var(--green);
-  }
+/* FOOTER */
+footer{background:var(--brown);color:#bcaaa4;text-align:center;padding:18px 16px;font-size:.75rem;margin-top:20px;}
+footer strong{color:#fff;}
 </style>
 </head>
 <body>
 
-<!-- ═══════════════ HEADER ═══════════════ -->
+<!-- HEADER -->
 <header>
   <div class="logo-row">
-    <!-- Carrot juice glass with mint SVG logo -->
     <svg class="logo-icon" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
-      <!-- Glass -->
-      <path d="M12 14 L15 44 Q15 47 19 47 L33 47 Q37 47 37 44 L40 14 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
-      <!-- Carrot juice fill -->
-      <path d="M14.5 22 L17 44 Q17 46 20 46 L32 46 Q35 46 35 44 L37.5 22 Z" fill="#ff8f00" opacity="0.85"/>
-      <!-- Mint leaves -->
+      <path d="M12 14 L15 44 Q15 47 19 47 L33 47 Q37 47 37 44 L40 14 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.55)" stroke-width="1.5"/>
+      <path d="M14.5 22 L17 44 Q17 46 20 46 L32 46 Q35 46 35 44 L37.5 22 Z" fill="#ff8f00" opacity="0.9"/>
       <ellipse cx="23" cy="17" rx="5" ry="3" fill="#4caf50" transform="rotate(-30 23 17)"/>
       <ellipse cx="28" cy="15" rx="4" ry="2.5" fill="#66bb6a" transform="rotate(20 28 15)"/>
       <ellipse cx="26" cy="19" rx="3.5" ry="2" fill="#388e3c" transform="rotate(-10 26 19)"/>
-      <!-- Straw -->
       <rect x="30" y="10" width="2.5" height="22" rx="1" fill="rgba(255,255,255,0.7)"/>
-      <!-- Glass shine -->
-      <path d="M15 18 L16 36" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
     </svg>
     <div>
       <div class="brand-name">HEALTH BY NATURE</div>
@@ -396,221 +174,452 @@
   </div>
 </header>
 
-<!-- ═══════════════ NAV ═══════════════ -->
-<nav>
-  <a href="#" class="active" onclick="showSection('home',this)">🏠 Home</a>
-  <a href="#" onclick="showSection('charcoal',this)">🖤 Charcoal</a>
-  <a href="#" onclick="showSection('cinnamon',this)">🟤 Cinnamon</a>
-  <a href="#" onclick="showSection('yellowdock',this)">🌿 Yellow Dock</a>
-  <a href="#" onclick="showSection('moringa',this)">💚 Moringa</a>
-  <a href="#" onclick="showSection('about',this)">ℹ️ About</a>
-  <a href="#" onclick="showSection('contact',this)">📞 Contact</a>
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="active" onclick="go('home',this)">🏠 Home</a>
+  <a href="#" onclick="go('shop',this)">🛒 Shop</a>
+  <a href="#" onclick="go('charcoal',this)">🖤 Charcoal</a>
+  <a href="#" onclick="go('cinnamon',this)">🟤 Cinnamon</a>
+  <a href="#" onclick="go('yellowdock',this)">🌿 Yellow Dock</a>
+  <a href="#" onclick="go('moringa',this)">💚 Moringa</a>
+  <a href="#" onclick="go('about',this)">👩‍⚕️ About</a>
+  <a href="#" onclick="go('contact',this)">📞 Contact</a>
 </nav>
 
-<!-- ═══════════════ HOME ═══════════════ -->
+<!-- ══ HOME ══ -->
 <section id="home" class="active">
   <div class="hero">
     <h1>Nature Heals.<br>Always Has.</h1>
-    <p>Pure, natural herbal products — trusted by families, delivered with care.</p>
-    <a href="#" class="hero-btn" onclick="showSection('charcoal', document.querySelectorAll('nav a')[1])">Shop Products →</a>
+    <p>Pure herbal products by Jane Macharia — trusted by families across Zimbabwe.</p>
+    <a href="#" class="hero-btn" onclick="go('shop',document.querySelectorAll('#mainNav a')[1])">🛒 Shop Products →</a>
   </div>
-
   <div class="features-row">
     <div class="feature-tile"><div class="icon">🌱</div><p>100% Natural</p></div>
     <div class="feature-tile"><div class="icon">✅</div><p>Tried & Tested</p></div>
     <div class="feature-tile"><div class="icon">🚚</div><p>Fast Delivery</p></div>
     <div class="feature-tile"><div class="icon">💬</div><p>Free Advice</p></div>
   </div>
-
-  <p class="section-title" style="margin-top:10px;">Our Products</p>
-  <p class="section-sub">Tap a product to learn more</p>
-
+  <div class="sec-header" style="margin-top:12px;">
+    <p class="section-title">Our Products</p>
+    <p class="section-sub">Tap any product to learn more</p>
+  </div>
   <div class="products-preview">
-    <div class="preview-card" onclick="showSection('charcoal', document.querySelectorAll('nav a')[1])">
-      <img src="https://images.pexels.com/photos/4099235/pexels-photo-4099235.jpeg?auto=compress&w=300" alt="Activated Charcoal" onerror="this.src='https://via.placeholder.com/140x110/333/fff?text=Charcoal'">
-      <div class="pname">Activated Charcoal</div>
+    <div class="preview-card" onclick="go('charcoal',document.querySelectorAll('#mainNav a')[2])">
+      <img src="https://images.pexels.com/photos/4099235/pexels-photo-4099235.jpeg?auto=compress&w=260" alt="Charcoal" onerror="this.src='https://via.placeholder.com/130x100/222/fff?text=Charcoal'">
+      <div class="pname">🖤 Charcoal</div>
     </div>
-    <div class="preview-card" onclick="showSection('cinnamon', document.querySelectorAll('nav a')[2])">
-      <img src="https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&w=300" alt="Cinnamon" onerror="this.src='https://via.placeholder.com/140x110/8B4513/fff?text=Cinnamon'">
-      <div class="pname">Cinnamon</div>
+    <div class="preview-card" onclick="go('cinnamon',document.querySelectorAll('#mainNav a')[3])">
+      <img src="https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&w=260" alt="Cinnamon" onerror="this.src='https://via.placeholder.com/130x100/8B4513/fff?text=Cinnamon'">
+      <div class="pname">🟤 Cinnamon</div>
     </div>
-    <div class="preview-card" onclick="showSection('yellowdock', document.querySelectorAll('nav a')[3])">
-      <img src="https://images.pexels.com/photos/1458671/pexels-photo-1458671.jpeg?auto=compress&w=300" alt="Yellow Dock" onerror="this.src='https://via.placeholder.com/140x110/DAA520/fff?text=Yellow+Dock'">
-      <div class="pname">Yellow Dock</div>
+    <div class="preview-card" onclick="go('yellowdock',document.querySelectorAll('#mainNav a')[4])">
+      <img src="https://images.pexels.com/photos/1458671/pexels-photo-1458671.jpeg?auto=compress&w=260" alt="Yellow Dock" onerror="this.src='https://via.placeholder.com/130x100/DAA520/333?text=Yellow+Dock'">
+      <div class="pname">🌿 Yellow Dock</div>
     </div>
-    <div class="preview-card" onclick="showSection('moringa', document.querySelectorAll('nav a')[4])">
-      <img src="https://images.pexels.com/photos/1490580/pexels-photo-1490580.jpeg?auto=compress&w=300" alt="Moringa" onerror="this.src='https://via.placeholder.com/140x110/228B22/fff?text=Moringa'">
-      <div class="pname">Moringa</div>
+    <div class="preview-card" onclick="go('moringa',document.querySelectorAll('#mainNav a')[5])">
+      <img src="https://images.pexels.com/photos/1490580/pexels-photo-1490580.jpeg?auto=compress&w=260" alt="Moringa" onerror="this.src='https://via.placeholder.com/130x100/228B22/fff?text=Moringa'">
+      <div class="pname">💚 Moringa</div>
     </div>
   </div>
-
-  <div style="background:#fff;border-radius:14px;padding:16px;margin:18px 0 10px;box-shadow:var(--shadow);text-align:center;">
-    <p style="font-size:0.9rem;color:#555;margin-bottom:10px;">📞 Call or WhatsApp us today for FREE consultation</p>
-    <a href="tel:0719428046" style="display:inline-block;background:var(--orange);color:#fff;padding:10px 24px;border-radius:20px;font-weight:700;font-size:0.9rem;text-decoration:none;margin-right:6px;">Call Now</a>
-    <a href="https://wa.me/0719428046" style="display:inline-block;background:#25d366;color:#fff;padding:10px 24px;border-radius:20px;font-weight:700;font-size:0.9rem;text-decoration:none;">WhatsApp</a>
+  <div style="margin:18px 16px 0;">
+    <div class="jane-card">
+      <div class="jane-avatar">👩‍⚕️</div>
+      <h3>Jane Macharia — Director</h3>
+      <p>Certified herbalist. Get a FREE personal consultation before you order — Jane will guide you.</p>
+      <div class="jane-btns">
+        <a href="tel:0719428046" class="jane-btn call">📞 Call Jane</a>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20need%20a%20consultation." class="jane-btn wa">💬 WhatsApp</a>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- ═══════════════ ACTIVATED CHARCOAL ═══════════════ -->
+<!-- ══ SHOP ══ -->
+<section id="shop">
+  <div class="shop-hero">
+    <h2>🛒 Shop Products</h2>
+    <p>All sizes available — order directly from Jane via WhatsApp</p>
+  </div>
+  <div class="shop-filter">
+    <button class="filter-btn on" onclick="filterShop('all',this)">All</button>
+    <button class="filter-btn" onclick="filterShop('charcoal',this)">🖤 Charcoal</button>
+    <button class="filter-btn" onclick="filterShop('cinnamon',this)">🟤 Cinnamon</button>
+    <button class="filter-btn" onclick="filterShop('yellowdock',this)">🌿 Yellow Dock</button>
+    <button class="filter-btn" onclick="filterShop('moringa',this)">💚 Moringa</button>
+  </div>
+  <div class="shop-grid">
+
+    <!-- CHARCOAL 3 TIERS -->
+    <div class="shop-item" data-cat="charcoal">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/4099235/pexels-photo-4099235.jpeg?auto=compress&w=220" alt="Charcoal 250g" onerror="this.src='https://via.placeholder.com/108x108/222/fff?text=250g'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Activated Charcoal</div><div class="shop-item-size">🖤 250g — Starter Pack</div><div class="shop-item-price">USD $5</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Activated%20Charcoal%20250g." class="shop-item-btn">Order</a>
+      </div>
+    </div>
+
+    <div class="shop-item best" data-cat="charcoal">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/4099235/pexels-photo-4099235.jpeg?auto=compress&w=220" alt="Charcoal 500g" onerror="this.src='https://via.placeholder.com/108x108/222/fff?text=500g'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Activated Charcoal <span style="background:var(--orange);color:#fff;font-size:.58rem;padding:2px 5px;border-radius:5px;vertical-align:middle;">BEST VALUE</span></div><div class="shop-item-size">🖤 500g — Family Pack</div><div class="shop-item-price">USD $9</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Activated%20Charcoal%20500g." class="shop-item-btn orange">Order</a>
+      </div>
+    </div>
+
+    <div class="shop-item" data-cat="charcoal">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/4099235/pexels-photo-4099235.jpeg?auto=compress&w=220" alt="Charcoal 1kg" onerror="this.src='https://via.placeholder.com/108x108/222/fff?text=1kg'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Activated Charcoal</div><div class="shop-item-size">🖤 1kg — Bulk / Resell</div><div class="shop-item-price">USD $16</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Activated%20Charcoal%201kg." class="shop-item-btn">Order</a>
+      </div>
+    </div>
+
+    <!-- CINNAMON -->
+    <div class="shop-item" data-cat="cinnamon">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&w=220" alt="Cinnamon 250g" onerror="this.src='https://via.placeholder.com/108x108/8B4513/fff?text=Cin+250g'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Ceylon Cinnamon</div><div class="shop-item-size">🟤 250g Pack</div><div class="shop-item-price">USD $4</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Cinnamon%20250g." class="shop-item-btn">Order</a>
+      </div>
+    </div>
+    <div class="shop-item" data-cat="cinnamon">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&w=220" alt="Cinnamon 500g" onerror="this.src='https://via.placeholder.com/108x108/8B4513/fff?text=Cin+500g'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Ceylon Cinnamon</div><div class="shop-item-size">🟤 500g Pack</div><div class="shop-item-price">USD $7</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Cinnamon%20500g." class="shop-item-btn">Order</a>
+      </div>
+    </div>
+
+    <!-- YELLOW DOCK -->
+    <div class="shop-item" data-cat="yellowdock">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/1458671/pexels-photo-1458671.jpeg?auto=compress&w=220" alt="Yellow Dock 250g" onerror="this.src='https://via.placeholder.com/108x108/DAA520/333?text=YD+250g'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Yellow Dock Root</div><div class="shop-item-size">🌿 250g Pack</div><div class="shop-item-price">USD $5</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Yellow%20Dock%20250g." class="shop-item-btn">Order</a>
+      </div>
+    </div>
+    <div class="shop-item" data-cat="yellowdock">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/1458671/pexels-photo-1458671.jpeg?auto=compress&w=220" alt="Yellow Dock 500g" onerror="this.src='https://via.placeholder.com/108x108/DAA520/333?text=YD+500g'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Yellow Dock Root</div><div class="shop-item-size">🌿 500g Pack</div><div class="shop-item-price">USD $9</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Yellow%20Dock%20500g." class="shop-item-btn">Order</a>
+      </div>
+    </div>
+
+    <!-- MORINGA -->
+    <div class="shop-item" data-cat="moringa">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/1490580/pexels-photo-1490580.jpeg?auto=compress&w=220" alt="Moringa 250g" onerror="this.src='https://via.placeholder.com/108x108/228B22/fff?text=Mor+250g'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Moringa Powder</div><div class="shop-item-size">💚 250g Pack</div><div class="shop-item-price">USD $4</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Moringa%20250g." class="shop-item-btn">Order</a>
+      </div>
+    </div>
+    <div class="shop-item" data-cat="moringa">
+      <div class="shop-item-img"><img src="https://images.pexels.com/photos/1490580/pexels-photo-1490580.jpeg?auto=compress&w=220" alt="Moringa 500g" onerror="this.src='https://via.placeholder.com/108x108/228B22/fff?text=Mor+500g'"></div>
+      <div class="shop-item-body">
+        <div><div class="shop-item-name">Moringa Powder</div><div class="shop-item-size">💚 500g Pack</div><div class="shop-item-price">USD $7</div></div>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Moringa%20500g." class="shop-item-btn">Order</a>
+      </div>
+    </div>
+
+  </div>
+  <div style="margin:4px 16px 0;">
+    <div class="jane-card">
+      <div class="jane-avatar">👩‍⚕️</div>
+      <h3>Not sure what to order?</h3>
+      <p>Contact Jane for FREE advice on which product suits your health needs best.</p>
+      <div class="jane-btns">
+        <a href="tel:0719428046" class="jane-btn call">📞 Call Jane</a>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20Please%20help%20me%20choose." class="jane-btn wa">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CHARCOAL FULL PAGE ══ -->
 <section id="charcoal">
-  <p class="section-title">🖤 Activated Charcoal</p>
-  <p class="section-sub">Nature's powerful detox agent</p>
+  <div class="charcoal-hero">
+    <h2>🖤 Activated Charcoal</h2>
+    <p>The ancient dark remedy — now proven by science for deep body detox & healing.</p>
+    <a href="#" onclick="go('shop',document.querySelectorAll('#mainNav a')[1])" style="display:inline-block;background:var(--orange);color:#fff;padding:10px 24px;border-radius:24px;font-weight:700;font-size:.85rem;text-decoration:none;">🛒 Buy Now</a>
+  </div>
 
-  <div class="product-card">
-    <img src="https://images.pexels.com/photos/4099235/pexels-photo-4099235.jpeg?auto=compress&w=400" alt="Activated Charcoal" onerror="this.src='https://via.placeholder.com/400x190/222/fff?text=Activated+Charcoal'">
-    <div class="card-body">
-      <span class="card-badge">Detox & Cleanse</span>
-      <div class="card-title">Activated Charcoal</div>
-      <p class="card-desc">Pure activated charcoal made from natural coconut shells. A centuries-old remedy now backed by science for powerful detoxification and gut health.</p>
-      <ul class="benefits-list">
-        <li>Removes toxins & poisons from the body</li>
-        <li>Relieves bloating & gas</li>
-        <li>Supports kidney health</li>
-        <li>Whitens teeth naturally</li>
-        <li>Helps with food poisoning relief</li>
-      </ul>
-      <a href="https://wa.me/0719428046?text=Hello!%20I%27m%20interested%20in%20Activated%20Charcoal" class="order-btn">Order via WhatsApp</a>
+  <!-- GENDER TABS -->
+  <div class="sec-header">
+    <p class="section-title" style="color:var(--charcoal);">Benefits for Men &amp; Women</p>
+    <p class="section-sub">Tap your gender to see personalised benefits</p>
+  </div>
+  <div class="gender-tabs">
+    <button class="gtab on" onclick="switchGender('women',this)">👩 For Women</button>
+    <button class="gtab" onclick="switchGender('men',this)">👨 For Men</button>
+  </div>
+
+  <!-- WOMEN BENEFITS -->
+  <div class="gender-content active" id="gc-women">
+    <div class="benefit-grid">
+      <div class="benefit-pill"><div class="bicon">✨</div><div class="btitle">Glowing Skin</div><div class="bdesc">Draws out toxins that cause dull skin, acne &amp; blackheads</div></div>
+      <div class="benefit-pill"><div class="bicon">🩸</div><div class="btitle">Hormone Balance</div><div class="bdesc">Flushes excess hormones linked to mood swings &amp; PMS</div></div>
+      <div class="benefit-pill"><div class="bicon">🦷</div><div class="btitle">Whiter Teeth</div><div class="bdesc">Natural whitening — removes stains without harsh chemicals</div></div>
+      <div class="benefit-pill"><div class="bicon">🌸</div><div class="btitle">Vaginal Health</div><div class="bdesc">Reduces odour &amp; fights bacterial imbalance naturally</div></div>
+      <div class="benefit-pill"><div class="bicon">⚖️</div><div class="btitle">Weight Support</div><div class="bdesc">Binds to fat &amp; reduces bloating after heavy meals</div></div>
+      <div class="benefit-pill"><div class="bicon">💆</div><div class="btitle">Flat Tummy</div><div class="bdesc">Relieves bloating, gas &amp; constipation effectively</div></div>
+    </div>
+  </div>
+
+  <!-- MEN BENEFITS -->
+  <div class="gender-content" id="gc-men">
+    <div class="benefit-grid">
+      <div class="benefit-pill"><div class="bicon">💪</div><div class="btitle">Kidney Support</div><div class="bdesc">Filters urea &amp; waste from blood — protects kidneys</div></div>
+      <div class="benefit-pill"><div class="bicon">🍺</div><div class="btitle">Hangover Relief</div><div class="bdesc">Absorbs alcohol toxins — faster recovery after drinking</div></div>
+      <div class="benefit-pill"><div class="bicon">❤️</div><div class="btitle">Heart Health</div><div class="bdesc">Lowers bad cholesterol (LDL) — keeps arteries clean</div></div>
+      <div class="benefit-pill"><div class="bicon">🧪</div><div class="btitle">Deep Detox</div><div class="bdesc">Removes heavy metals &amp; pesticides from the gut</div></div>
+      <div class="benefit-pill"><div class="bicon">🦷</div><div class="btitle">Fresh Breath</div><div class="bdesc">Kills bacteria causing bad breath &amp; whitens teeth</div></div>
+      <div class="benefit-pill"><div class="bicon">🏋️</div><div class="btitle">More Energy</div><div class="bdesc">Clears body toxins that cause fatigue &amp; slow you down</div></div>
+    </div>
+  </div>
+
+  <!-- PRICING TIERS -->
+  <div class="pricing-section">
+    <p class="pricing-label">Choose Your Size</p>
+    <div class="tier-card">
+      <div class="tier-icon">🖤</div>
+      <div class="tier-info"><div class="tier-name">Starter — 250g</div><div class="tier-desc">Perfect for personal use. Try it first!</div><div class="tier-price">USD $5</div></div>
+      <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Activated%20Charcoal%20250g." class="tier-btn">Order</a>
+    </div>
+    <div class="tier-card featured">
+      <div class="tier-icon">🖤🖤</div>
+      <div class="tier-info"><div class="tier-name">Family — 500g <span class="tier-badge">Best Value</span></div><div class="tier-desc">Great for the whole family. Most popular!</div><div class="tier-price">USD $9</div></div>
+      <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Activated%20Charcoal%20500g." class="tier-btn orange">Order</a>
+    </div>
+    <div class="tier-card">
+      <div class="tier-icon">🖤🖤🖤</div>
+      <div class="tier-info"><div class="tier-name">Bulk — 1kg</div><div class="tier-desc">For resellers &amp; large families. Best price per gram.</div><div class="tier-price">USD $16</div></div>
+      <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20Activated%20Charcoal%201kg." class="tier-btn">Order</a>
+    </div>
+  </div>
+
+  <!-- HOW TO USE -->
+  <div class="about-box">
+    <h3>🥄 How to Use</h3>
+    <p><strong>Powder:</strong> Mix ½ teaspoon in a glass of water. Drink on empty stomach once daily.<br><br>
+    <strong>Teeth Whitening:</strong> Dip wet toothbrush in powder. Brush gently for 2 minutes. Rinse well.<br><br>
+    <strong>Face Mask:</strong> Mix with water to form a paste. Apply to face for 10 minutes then rinse.<br><br>
+    ⚠️ <em>Do not take within 2 hours of medication — it may reduce absorption.</em></p>
+  </div>
+
+  <!-- BUY FROM JANE -->
+  <div style="margin:16px 16px 0;">
+    <div class="jane-card">
+      <div class="jane-avatar">👩‍⚕️</div>
+      <h3>Buy from Jane Macharia</h3>
+      <p>Director &amp; certified herbalist. Jane will personally advise on the right dosage for YOUR health condition — completely free.</p>
+      <div class="jane-btns">
+        <a href="tel:0719428046" class="jane-btn call">📞 0719 428 046</a>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20to%20order%20Activated%20Charcoal." class="jane-btn wa">💬 WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ CINNAMON ═══════════════ -->
+<!-- ══ CINNAMON ══ -->
 <section id="cinnamon">
-  <p class="section-title">🟤 Cinnamon</p>
-  <p class="section-sub">The ancient spice of healing</p>
-
-  <div class="product-card">
-    <img src="https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&w=400" alt="Cinnamon" onerror="this.src='https://via.placeholder.com/400x190/8B4513/fff?text=Cinnamon'">
+  <div style="height:200px;overflow:hidden;">
+    <img src="https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&w=500" alt="Cinnamon" style="width:100%;height:200px;object-fit:cover;" onerror="this.src='https://via.placeholder.com/500x200/8B4513/fff?text=Cinnamon'">
+  </div>
+  <div class="sec-header">
+    <p class="section-title">🟤 Ceylon Cinnamon</p>
+    <p class="section-sub">The ancient spice that heals from within</p>
+  </div>
+  <div class="card">
     <div class="card-body">
-      <span class="card-badge">Blood Sugar & Heart</span>
-      <div class="card-title">Ceylon Cinnamon</div>
-      <p class="card-desc">Pure organic cinnamon sticks and powder. Used for thousands of years in traditional medicine for its powerful healing properties.</p>
+      <span class="card-badge">Blood Sugar &amp; Heart Health</span>
+      <div class="card-title">What Cinnamon Does for You</div>
+      <p class="card-desc">Used for centuries in African and Asian traditional medicine, Ceylon Cinnamon is one of the most powerful natural healers available today. Pure, unprocessed and highly potent.</p>
       <ul class="benefits-list">
-        <li>Lowers blood sugar levels</li>
-        <li>Reduces bad cholesterol (LDL)</li>
-        <li>Powerful anti-inflammatory</li>
-        <li>Fights bacterial & fungal infections</li>
-        <li>Boosts brain function & memory</li>
+        <li>Lowers and stabilises blood sugar — ideal for diabetics</li>
+        <li>Reduces bad cholesterol (LDL) &amp; protects the heart</li>
+        <li>Powerful anti-inflammatory — helps joint &amp; muscle pain</li>
+        <li>Fights bacterial &amp; fungal infections naturally</li>
+        <li>Boosts brain function, memory &amp; concentration</li>
+        <li>Supports weight loss by speeding up metabolism</li>
+        <li>Helps women with irregular periods &amp; menstrual cramps</li>
       </ul>
-      <a href="https://wa.me/0719428046?text=Hello!%20I%27m%20interested%20in%20Cinnamon" class="order-btn">Order via WhatsApp</a>
+      <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20to%20order%20Cinnamon." class="order-btn">🛒 Order via WhatsApp</a>
+    </div>
+  </div>
+  <div style="margin:0 16px;">
+    <div class="jane-card">
+      <div class="jane-avatar">👩‍⚕️</div>
+      <h3>Ask Jane Before You Order</h3>
+      <p>Not sure if cinnamon is right for your condition? Jane will advise you — free of charge.</p>
+      <div class="jane-btns">
+        <a href="tel:0719428046" class="jane-btn call">📞 Call Jane</a>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20have%20questions%20about%20Cinnamon." class="jane-btn wa">💬 WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ YELLOW DOCK ═══════════════ -->
+<!-- ══ YELLOW DOCK ══ -->
 <section id="yellowdock">
-  <p class="section-title">🌿 Yellow Dock</p>
-  <p class="section-sub">The root of iron & liver health</p>
-
-  <div class="product-card">
-    <img src="https://images.pexels.com/photos/1458671/pexels-photo-1458671.jpeg?auto=compress&w=400" alt="Yellow Dock" onerror="this.src='https://via.placeholder.com/400x190/DAA520/333?text=Yellow+Dock'">
+  <div style="height:200px;overflow:hidden;">
+    <img src="https://images.pexels.com/photos/1458671/pexels-photo-1458671.jpeg?auto=compress&w=500" alt="Yellow Dock" style="width:100%;height:200px;object-fit:cover;" onerror="this.src='https://via.placeholder.com/500x200/DAA520/333?text=Yellow+Dock'">
+  </div>
+  <div class="sec-header">
+    <p class="section-title">🌿 Yellow Dock Root</p>
+    <p class="section-sub">The iron-rich root for blood &amp; liver</p>
+  </div>
+  <div class="card">
     <div class="card-body">
-      <span class="card-badge">Blood & Liver</span>
-      <div class="card-title">Yellow Dock Root</div>
-      <p class="card-desc">A traditional herbal root known for its rich iron content and liver-cleansing properties. Ideal for those dealing with anaemia and digestive issues.</p>
+      <span class="card-badge" style="background:#fff3e0;color:var(--orange);">Blood &amp; Liver Health</span>
+      <div class="card-title">What Yellow Dock Does for You</div>
+      <p class="card-desc">Yellow Dock root is one of nature's best-kept secrets for blood health and liver cleansing. Especially powerful for women with anaemia and anyone with digestive challenges.</p>
       <ul class="benefits-list">
-        <li>Treats iron deficiency & anaemia</li>
-        <li>Cleanses and supports the liver</li>
-        <li>Improves skin conditions (eczema, acne)</li>
-        <li>Relieves constipation naturally</li>
-        <li>Supports lymphatic system</li>
+        <li>Treats iron deficiency &amp; anaemia — builds strong blood</li>
+        <li>Cleanses and rejuvenates a tired liver</li>
+        <li>Clears skin conditions — eczema, acne, psoriasis</li>
+        <li>Relieves chronic constipation naturally</li>
+        <li>Supports the lymphatic &amp; immune system</li>
+        <li>Helps detox the body of heavy metals</li>
+        <li>Reduces inflammation in joints and the gut</li>
       </ul>
-      <a href="https://wa.me/0719428046?text=Hello!%20I%27m%20interested%20in%20Yellow%20Dock" class="order-btn">Order via WhatsApp</a>
+      <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20to%20order%20Yellow%20Dock." class="order-btn orange">🛒 Order via WhatsApp</a>
+    </div>
+  </div>
+  <div style="margin:0 16px;">
+    <div class="jane-card">
+      <div class="jane-avatar">👩‍⚕️</div>
+      <h3>Buy from Jane Macharia</h3>
+      <p>Yellow Dock is especially powerful for women with low iron. Jane will confirm the right dosage for you.</p>
+      <div class="jane-btns">
+        <a href="tel:0719428046" class="jane-btn call">📞 Call Jane</a>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20to%20order%20Yellow%20Dock." class="jane-btn wa">💬 WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ MORINGA ═══════════════ -->
+<!-- ══ MORINGA ══ -->
 <section id="moringa">
-  <p class="section-title">💚 Moringa</p>
-  <p class="section-sub">The miracle tree of Africa</p>
-
-  <div class="product-card">
-    <img src="https://images.pexels.com/photos/1490580/pexels-photo-1490580.jpeg?auto=compress&w=400" alt="Moringa" onerror="this.src='https://via.placeholder.com/400x190/228B22/fff?text=Moringa'">
+  <div style="height:200px;overflow:hidden;">
+    <img src="https://images.pexels.com/photos/1490580/pexels-photo-1490580.jpeg?auto=compress&w=500" alt="Moringa" style="width:100%;height:200px;object-fit:cover;" onerror="this.src='https://via.placeholder.com/500x200/228B22/fff?text=Moringa'">
+  </div>
+  <div class="sec-header">
+    <p class="section-title">💚 Moringa Leaf Powder</p>
+    <p class="section-sub">Africa's miracle tree — pure superfood</p>
+  </div>
+  <div class="card">
     <div class="card-body">
       <span class="card-badge">Superfood Powerhouse</span>
-      <div class="card-title">Moringa Leaf Powder</div>
-      <p class="card-desc">Called the "Tree of Life" in Africa, moringa is packed with vitamins, minerals and antioxidants. More nutrients per gram than almost any other plant.</p>
+      <div class="card-title">What Moringa Does for You</div>
+      <p class="card-desc">Known as the "Tree of Life", moringa has more nutrients per gram than almost any other plant. Used across Africa and Asia for energy, immunity and healing — for all ages including children.</p>
       <ul class="benefits-list">
-        <li>Boosts energy & reduces fatigue</li>
-        <li>Rich in iron, calcium & Vitamin C</li>
-        <li>Controls blood pressure & sugar</li>
-        <li>Strengthens immune system</li>
-        <li>Supports breastfeeding mothers</li>
+        <li>Boosts energy levels &amp; fights daily fatigue</li>
+        <li>Rich in iron, calcium, Vitamin A, C &amp; E</li>
+        <li>Controls blood pressure and blood sugar</li>
+        <li>Strengthens the immune system naturally</li>
+        <li>Supports nursing mothers — increases breast milk</li>
+        <li>Anti-ageing — fights free radicals &amp; skin damage</li>
+        <li>Great for children's growth &amp; brain development</li>
       </ul>
-      <a href="https://wa.me/0719428046?text=Hello!%20I%27m%20interested%20in%20Moringa" class="order-btn">Order via WhatsApp</a>
+      <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20to%20order%20Moringa." class="order-btn">🛒 Order via WhatsApp</a>
+    </div>
+  </div>
+  <div style="margin:0 16px;">
+    <div class="jane-card">
+      <div class="jane-avatar">👩‍⚕️</div>
+      <h3>Buy from Jane Macharia</h3>
+      <p>Moringa is safe for the whole family including children. Jane will advise on the right amount per age group.</p>
+      <div class="jane-btns">
+        <a href="tel:0719428046" class="jane-btn call">📞 Call Jane</a>
+        <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20want%20to%20order%20Moringa." class="jane-btn wa">💬 WhatsApp</a>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════════════ ABOUT ═══════════════ -->
+<!-- ══ ABOUT ══ -->
 <section id="about">
-  <p class="section-title">About Us</p>
-  <p class="section-sub">Who we are & what we believe</p>
-
+  <div class="about-hero">
+    <h2>👩‍⚕️ About Us</h2>
+    <p>Meet the woman behind Health By Nature</p>
+  </div>
+  <div style="margin:16px 16px 0;">
+    <div class="jane-card">
+      <div class="jane-avatar">👩‍⚕️</div>
+      <h3>Jane Macharia — Director</h3>
+      <p>Certified Herbalist &amp; Natural Health Educator<br><br>Jane Macharia has dedicated her career to empowering communities through natural health. With deep knowledge of African and traditional herbal medicine, she has helped hundreds of families across Zimbabwe heal naturally — without costly prescriptions.</p>
+      <div class="jane-btns">
+        <a href="tel:0719428046" class="jane-btn call">📞 Call Jane</a>
+        <a href="https://wa.me/263719428046" class="jane-btn wa">💬 WhatsApp</a>
+      </div>
+    </div>
+  </div>
   <div class="about-box">
     <h3>🌿 Our Mission</h3>
-    <p>At <strong>Health By Nature</strong>, we believe the earth provides everything needed for healing. Our mission is to bring pure, natural herbal products to every home — making good health affordable and accessible for all.</p>
+    <p>To bring pure, affordable and effective natural herbal products to every home. We believe God put everything we need to heal in nature — and our job is to make it easy for you to access it.</p>
   </div>
-
   <div class="about-box">
-    <h3>👤 Director</h3>
-    <p><strong>Jane Macharia</strong> — Director &amp; Herbalist<br><br>
-    With years of experience in natural health and herbal medicine, Jane is passionate about educating communities on the healing power of nature.</p>
-  </div>
-
-  <div class="about-box">
-    <h3>💡 Why Choose Us?</h3>
-    <p>✅ All products are 100% natural<br>
-    ✅ No harmful chemicals or additives<br>
-    ✅ Free health consultation<br>
-    ✅ Affordable prices for every budget<br>
-    ✅ Trusted by hundreds of families</p>
+    <h3>💡 Why Choose Health By Nature?</h3>
+    <div class="check-row"><span>✅</span><span>100% natural — no chemicals, no additives</span></div>
+    <div class="check-row"><span>✅</span><span>Free personal consultation with every order</span></div>
+    <div class="check-row"><span>✅</span><span>Affordable prices for all income levels</span></div>
+    <div class="check-row"><span>✅</span><span>Trusted by hundreds of Zimbabwe families</span></div>
+    <div class="check-row"><span>✅</span><span>Safe for adults, elderly and children</span></div>
+    <div class="check-row"><span>✅</span><span>Fast delivery or pickup available</span></div>
   </div>
 </section>
 
-<!-- ═══════════════ CONTACT ═══════════════ -->
+<!-- ══ CONTACT ══ -->
 <section id="contact">
-  <p class="section-title">Contact Us</p>
-  <p class="section-sub">We're here to help you heal</p>
-
+  <div class="about-hero">
+    <h2>📞 Contact Us</h2>
+    <p>We're always here to help you heal</p>
+  </div>
   <div class="contact-card">
     <h3>📍 Health By Nature</h3>
-    <div class="contact-item"><span class="contact-icon">👩‍⚕️</span><span>Jane Machajira — Director</span></div>
-    <div class="contact-item"><span class="contact-icon">📞</span><span>0719 428 046</span></div>
-    <div class="contact-item"><span class="contact-icon">📞</span><span>079 279 172</span></div>
-    <div class="contact-item"><span class="contact-icon">🕒</span><span>Mon–Sat: 8am – 6pm</span></div>
+    <div class="c-item"><span>👩‍⚕️</span><span>Jane Macharia — Director &amp; Herbalist</span></div>
+    <div class="c-item"><span>📞</span><span>0719 428 046</span></div>
+    <div class="c-item"><span>📞</span><span>079 279 172</span></div>
+    <div class="c-item"><span>🕒</span><span>Mon–Sat: 8:00am – 6:00pm</span></div>
   </div>
-
-  <a href="https://wa.me/263719428046" class="whatsapp-btn">💬 Chat on WhatsApp</a>
-
-  <div style="background:#fff;border-radius:14px;padding:16px;margin-top:14px;box-shadow:var(--shadow);">
-    <p style="font-size:0.85rem;color:#555;text-align:center;margin-bottom:12px;">📦 Place your order or ask any health questions</p>
+  <a href="https://wa.me/263719428046?text=Hello%20Jane!%20I%20need%20help%20with%20my%20health." class="wa-btn">💬 Chat on WhatsApp Now</a>
+  <div style="background:#fff;border-radius:14px;padding:16px;margin:14px 16px 0;box-shadow:var(--shadow);text-align:center;">
+    <p style="font-size:.83rem;color:#555;margin-bottom:12px;">📦 Place an order or ask any health questions</p>
     <a href="tel:0719428046" style="display:block;text-align:center;background:var(--orange);color:#fff;padding:12px;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:8px;">📞 Call: 0719 428 046</a>
-    <a href="tel:079279172" style="display:block;text-align:center;background:var(--green);color:#fff;padding:12px;border-radius:10px;font-weight:700;text-decoration:none;">📞 Call: 079 279 172</a>
+    <a href="tel:0792791722" style="display:block;text-align:center;background:var(--green);color:#fff;padding:12px;border-radius:10px;font-weight:700;text-decoration:none;">📞 Call: 079 279 172</a>
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- FOOTER -->
 <footer>
   <strong>HEALTH BY NATURE</strong><br>
   A Solution to All Health Problems<br>
-  <span style="color:#a1887f;">© 2024 Health By Nature. All rights reserved.</span>
+  <span style="color:#a1887f;">Director: Jane Macharia &nbsp;|&nbsp; © 2024 All rights reserved.</span>
 </footer>
 
 <script>
-  function showSection(id, navEl) {
-    // Hide all sections
-    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-    // Show target
-    document.getElementById(id).classList.add('active');
-    // Update nav
-    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-    if (navEl) navEl.classList.add('active');
-    // Scroll to top
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    return false;
-  }
+function go(id,navEl){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.querySelectorAll('#mainNav a').forEach(a=>a.classList.remove('active'));
+  if(navEl) navEl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+  return false;
+}
+function switchGender(gender,btn){
+  document.querySelectorAll('.gender-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.gtab').forEach(b=>b.classList.remove('on'));
+  document.getElementById('gc-'+gender).classList.add('active');
+  btn.classList.add('on');
+}
+function filterShop(cat,btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.querySelectorAll('.shop-item').forEach(item=>{
+    item.style.display=(cat==='all'||item.dataset.cat===cat)?'flex':'none';
+  });
+}
 </script>
 </body>
 </html>
