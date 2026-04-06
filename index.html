@@ -1,169 +1,616 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rustic Garden · Mandevu — Agroecology & Land Intelligence</title>
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Space+Mono&family=Lora:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Health By Nature</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d6a2d;
+    --green-light: #4caf50;
+    --green-pale: #e8f5e9;
+    --orange: #e65100;
+    --orange-light: #ff8f00;
+    --cream: #fffde7;
+    --brown: #4e342e;
+    --white: #ffffff;
+    --shadow: 0 4px 18px rgba(0,0,0,0.13);
+  }
 
-    <style>
-        :root {
-            --soil: #0d1a12;
-            --deep: #091410;
-            --moss: #2a4230;
-            --aqua: #3bc8c0;
-            --sage: #7aad7c;
-            --paper: #f2ede3;
-            --cream: #e8e0d0;
-            --clay: #c26a2d;
-        }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        body {
-            font-family: 'Lora', serif;
-            background: var(--deep);
-            color: var(--cream);
-            margin: 0;
-            line-height: 1.6;
-        }
+  body {
+    font-family: 'Lato', sans-serif;
+    background: var(--cream);
+    color: var(--brown);
+    overflow-x: hidden;
+  }
 
-        /* --- NAVIGATION --- */
-        nav {
-            padding: 20px 48px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: rgba(9, 20, 16, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
+  /* ── HEADER ── */
+  header {
+    background: linear-gradient(135deg, var(--green) 0%, #1b5e20 100%);
+    color: white;
+    padding: 18px 16px 14px;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.25);
+  }
 
-        .nav-brand {
-            font-family: 'Playfair Display', serif;
-            color: var(--sage);
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+  .logo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 4px;
+  }
 
-        /* --- HERO SECTION --- */
-        #hero {
-            padding: 100px 48px;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 40px;
-            align-items: center;
-        }
+  /* Carrot-juice glass logo */
+  .logo-icon {
+    width: 52px;
+    height: 52px;
+    flex-shrink: 0;
+  }
 
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 4rem;
-            color: var(--paper);
-            line-height: 1.1;
-        }
+  .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.55rem;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #fff;
+    line-height: 1.1;
+  }
 
-        .hero-title em { color: var(--sage); font-style: italic; }
+  .tagline {
+    font-size: 0.78rem;
+    color: #a5d6a7;
+    font-style: italic;
+    letter-spacing: 0.5px;
+  }
 
-        .coords-box {
-            font-family: 'Space Mono', monospace;
-            font-size: 0.8rem;
-            color: var(--aqua);
-            border: 1px solid rgba(59, 200, 192, 0.3);
-            padding: 15px;
-            display: inline-block;
-            margin-top: 20px;
-        }
+  /* ── NAV PILLS ── */
+  nav {
+    display: flex;
+    overflow-x: auto;
+    gap: 8px;
+    padding: 12px 14px;
+    background: #fff;
+    border-bottom: 2px solid var(--green-pale);
+    scrollbar-width: none;
+  }
+  nav::-webkit-scrollbar { display: none; }
 
-        /* --- MAP SECTION --- */
-        #map-container {
-            height: 500px;
-            width: 100%;
-            border: 1px solid var(--moss);
-            border-radius: 4px;
-            background: var(--soil);
-        }
+  nav a {
+    white-space: nowrap;
+    padding: 7px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    text-decoration: none;
+    background: var(--green-pale);
+    color: var(--green);
+    transition: background 0.2s, color 0.2s;
+    border: 1.5px solid transparent;
+  }
+  nav a:hover, nav a.active {
+    background: var(--green);
+    color: #fff;
+    border-color: var(--green);
+  }
 
-        .map-section {
-            padding: 60px 48px;
-            background: var(--soil);
-        }
+  /* ── HERO ── */
+  .hero {
+    background: linear-gradient(160deg, #1b5e20 0%, #2d6a2d 55%, #e65100 100%);
+    padding: 40px 20px 48px;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -40px; right: -40px;
+    width: 200px; height: 200px;
+    background: rgba(255,255,255,0.06);
+    border-radius: 50%;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    line-height: 1.2;
+  }
+  .hero p {
+    font-size: 0.95rem;
+    color: #c8e6c9;
+    margin-bottom: 22px;
+    max-width: 320px;
+    margin-left: auto; margin-right: auto;
+  }
+  .hero-btn {
+    display: inline-block;
+    background: var(--orange);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    text-decoration: none;
+    box-shadow: 0 4px 14px rgba(230,81,0,0.4);
+    transition: transform 0.2s;
+  }
+  .hero-btn:active { transform: scale(0.97); }
 
-        /* Custom Popup Style */
-        .leaflet-popup-content-wrapper {
-            background: var(--deep);
-            color: var(--paper);
-            font-family: 'Space Mono', monospace;
-            border: 1px solid var(--aqua);
-        }
+  /* ── SECTIONS ── */
+  section {
+    padding: 28px 16px 10px;
+    display: none;
+  }
+  section.active { display: block; }
 
-        .leaflet-popup-tip { background: var(--aqua); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    color: var(--green);
+    margin-bottom: 6px;
+    border-left: 4px solid var(--orange);
+    padding-left: 10px;
+  }
+  .section-sub {
+    font-size: 0.83rem;
+    color: #777;
+    margin-bottom: 18px;
+    padding-left: 14px;
+  }
 
-        @media (max-width: 900px) {
-            #hero { grid-template-columns: 1fr; padding: 60px 20px; }
-            .hero-title { font-size: 2.5rem; }
-        }
-    </style>
+  /* ── PRODUCT CARD ── */
+  .product-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    transition: transform 0.2s;
+  }
+  .product-card:active { transform: scale(0.98); }
+
+  .product-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+  }
+
+  .card-body {
+    padding: 14px 16px 18px;
+  }
+
+  .card-badge {
+    display: inline-block;
+    background: var(--green-pale);
+    color: var(--green);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+  }
+
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--brown);
+    margin-bottom: 6px;
+  }
+
+  .card-desc {
+    font-size: 0.85rem;
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .benefits-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 14px;
+  }
+  .benefits-list li {
+    font-size: 0.83rem;
+    color: var(--green);
+    padding: 3px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .benefits-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--orange);
+    font-weight: 700;
+  }
+
+  .order-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    background: var(--green);
+    color: white;
+    padding: 11px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+  }
+  .order-btn:active { background: #1b5e20; }
+
+  /* ── ABOUT ── */
+  .about-box {
+    background: #fff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: var(--shadow);
+    margin-bottom: 18px;
+  }
+  .about-box p {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #555;
+  }
+  .about-box h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--green);
+    margin-bottom: 8px;
+  }
+
+  /* ── CONTACT ── */
+  .contact-card {
+    background: var(--green);
+    color: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+  .contact-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    color: #c8e6c9;
+  }
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+  .contact-icon { font-size: 1.1rem; }
+
+  .whatsapp-btn {
+    display: block;
+    background: #25d366;
+    color: white;
+    text-align: center;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-top: 6px;
+    box-shadow: 0 4px 14px rgba(37,211,102,0.35);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--brown);
+    color: #bcaaa4;
+    text-align: center;
+    padding: 18px 16px;
+    font-size: 0.78rem;
+    margin-top: 16px;
+  }
+  footer strong { color: #fff; }
+
+  /* ── HOME PAGE specific ── */
+  #home { display: block; }
+
+  .features-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin: 20px 0 10px;
+  }
+  .feature-tile {
+    background: #fff;
+    border-radius: 14px;
+    padding: 16px 12px;
+    text-align: center;
+    box-shadow: var(--shadow);
+  }
+  .feature-tile .icon { font-size: 1.8rem; margin-bottom: 6px; }
+  .feature-tile p { font-size: 0.78rem; color: #555; font-weight: 600; }
+
+  .products-preview {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    scrollbar-width: none;
+  }
+  .products-preview::-webkit-scrollbar { display: none; }
+
+  .preview-card {
+    min-width: 140px;
+    background: #fff;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .preview-card img {
+    width: 100%;
+    height: 110px;
+    object-fit: cover;
+  }
+  .preview-card .pname {
+    padding: 8px 10px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--green);
+  }
+</style>
 </head>
 <body>
 
-    <nav>
-        <div class="nav-brand">Rustic Garden</div>
-        <div style="font-family: 'Space Mono'; font-size: 0.7rem; color: var(--clay);">LOCATION: KENYA</div>
-    </nav>
+<!-- ═══════════════ HEADER ═══════════════ -->
+<header>
+  <div class="logo-row">
+    <!-- Carrot juice glass with mint SVG logo -->
+    <svg class="logo-icon" viewBox="0 0 52 52" xmlns="http://www.w3.org/2000/svg">
+      <!-- Glass -->
+      <path d="M12 14 L15 44 Q15 47 19 47 L33 47 Q37 47 37 44 L40 14 Z" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+      <!-- Carrot juice fill -->
+      <path d="M14.5 22 L17 44 Q17 46 20 46 L32 46 Q35 46 35 44 L37.5 22 Z" fill="#ff8f00" opacity="0.85"/>
+      <!-- Mint leaves -->
+      <ellipse cx="23" cy="17" rx="5" ry="3" fill="#4caf50" transform="rotate(-30 23 17)"/>
+      <ellipse cx="28" cy="15" rx="4" ry="2.5" fill="#66bb6a" transform="rotate(20 28 15)"/>
+      <ellipse cx="26" cy="19" rx="3.5" ry="2" fill="#388e3c" transform="rotate(-10 26 19)"/>
+      <!-- Straw -->
+      <rect x="30" y="10" width="2.5" height="22" rx="1" fill="rgba(255,255,255,0.7)"/>
+      <!-- Glass shine -->
+      <path d="M15 18 L16 36" stroke="rgba(255,255,255,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+    <div>
+      <div class="brand-name">HEALTH BY NATURE</div>
+      <div class="tagline">A Solution to All Health Problems</div>
+    </div>
+  </div>
+</header>
 
-    <section id="hero">
-        <div>
-            <p style="font-family: 'Space Mono'; color: var(--aqua); text-transform: uppercase; letter-spacing: 3px;">Land Intelligence</p>
-            <h1 class="hero-title">Cultivating <em>Mandevu</em> Home.</h1>
-            <p style="margin-top: 20px; opacity: 0.8;">Agroecology and precise land management at Kwa Nyuki. Utilizing geospatial data to restore soil health and manage water resources efficiently.</p>
-            <div class="coords-box">
-                Lat: -1.28544 | Lng: 36.73423 
-            </div>
-        </div>
-        <div id="map-container"></div>
-    </section>
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav>
+  <a href="#" class="active" onclick="showSection('home',this)">🏠 Home</a>
+  <a href="#" onclick="showSection('charcoal',this)">🖤 Charcoal</a>
+  <a href="#" onclick="showSection('cinnamon',this)">🟤 Cinnamon</a>
+  <a href="#" onclick="showSection('yellowdock',this)">🌿 Yellow Dock</a>
+  <a href="#" onclick="showSection('moringa',this)">💚 Moringa</a>
+  <a href="#" onclick="showSection('about',this)">ℹ️ About</a>
+  <a href="#" onclick="showSection('contact',this)">📞 Contact</a>
+</nav>
 
-    <section class="map-section">
-        <h2 style="font-family: 'Playfair Display'; margin-bottom: 20px;">Geospatial Context</h2>
-        <p style="max-width: 600px; margin-bottom: 40px;">This interactive map shows the precise boundaries of the Mandevu property and the location of the Kwa Nyuki landmark as defined in our land records.</p>
-    </section>
+<!-- ═══════════════ HOME ═══════════════ -->
+<section id="home" class="active">
+  <div class="hero">
+    <h1>Nature Heals.<br>Always Has.</h1>
+    <p>Pure, natural herbal products — trusted by families, delivered with care.</p>
+    <a href="#" class="hero-btn" onclick="showSection('charcoal', document.querySelectorAll('nav a')[1])">Shop Products →</a>
+  </div>
 
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>
-        // Initialize the map centered on Mandevu 
-        var map = L.map('map-container').setView([-1.2854, 36.7342], 18);
+  <div class="features-row">
+    <div class="feature-tile"><div class="icon">🌱</div><p>100% Natural</p></div>
+    <div class="feature-tile"><div class="icon">✅</div><p>Tried & Tested</p></div>
+    <div class="feature-tile"><div class="icon">🚚</div><p>Fast Delivery</p></div>
+    <div class="feature-tile"><div class="icon">💬</div><p>Free Advice</p></div>
+  </div>
 
-        // Add a dark-themed map layer (using CartoDB Dark Matter)
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; OpenStreetMap &copy; CARTO'
-        }).addTo(map);
+  <p class="section-title" style="margin-top:10px;">Our Products</p>
+  <p class="section-sub">Tap a product to learn more</p>
 
-        // Define the Mandevu Home Polygon from your KML 
-        var mandevuHomeCoords = [
-            [-1.285481614498344, 36.73400158195487],
-            [-1.285473463019964, 36.73439918818473],
-            [-1.285224884502848, 36.73436365073541],
-            [-1.285246728019313, 36.7339726855714],
-            [-1.285481614498344, 36.73400158195487]
-        ];
+  <div class="products-preview">
+    <div class="preview-card" onclick="showSection('charcoal', document.querySelectorAll('nav a')[1])">
+      <img src="https://images.pexels.com/photos/4099235/pexels-photo-4099235.jpeg?auto=compress&w=300" alt="Activated Charcoal" onerror="this.src='https://via.placeholder.com/140x110/333/fff?text=Charcoal'">
+      <div class="pname">Activated Charcoal</div>
+    </div>
+    <div class="preview-card" onclick="showSection('cinnamon', document.querySelectorAll('nav a')[2])">
+      <img src="https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&w=300" alt="Cinnamon" onerror="this.src='https://via.placeholder.com/140x110/8B4513/fff?text=Cinnamon'">
+      <div class="pname">Cinnamon</div>
+    </div>
+    <div class="preview-card" onclick="showSection('yellowdock', document.querySelectorAll('nav a')[3])">
+      <img src="https://images.pexels.com/photos/1458671/pexels-photo-1458671.jpeg?auto=compress&w=300" alt="Yellow Dock" onerror="this.src='https://via.placeholder.com/140x110/DAA520/fff?text=Yellow+Dock'">
+      <div class="pname">Yellow Dock</div>
+    </div>
+    <div class="preview-card" onclick="showSection('moringa', document.querySelectorAll('nav a')[4])">
+      <img src="https://images.pexels.com/photos/1490580/pexels-photo-1490580.jpeg?auto=compress&w=300" alt="Moringa" onerror="this.src='https://via.placeholder.com/140x110/228B22/fff?text=Moringa'">
+      <div class="pname">Moringa</div>
+    </div>
+  </div>
 
-        // Add the polygon to the map
-        var polygon = L.polygon(mandevuHomeCoords, {
-            color: '#3bc8c0',
-            fillColor: '#3bc8c0',
-            fillOpacity: 0.2,
-            weight: 2
-        }).addTo(map).bindPopup("<b>Mandevu Home</b><br>Primary Residence Boundary.");
+  <div style="background:#fff;border-radius:14px;padding:16px;margin:18px 0 10px;box-shadow:var(--shadow);text-align:center;">
+    <p style="font-size:0.9rem;color:#555;margin-bottom:10px;">📞 Call or WhatsApp us today for FREE consultation</p>
+    <a href="tel:0719428046" style="display:inline-block;background:var(--orange);color:#fff;padding:10px 24px;border-radius:20px;font-weight:700;font-size:0.9rem;text-decoration:none;margin-right:6px;">Call Now</a>
+    <a href="https://wa.me/0719428046" style="display:inline-block;background:#25d366;color:#fff;padding:10px 24px;border-radius:20px;font-weight:700;font-size:0.9rem;text-decoration:none;">WhatsApp</a>
+  </div>
+</section>
 
-        // Add the Kwa Nyuki Marker 
-        var marker = L.marker([-1.2854443, 36.7342274]).addTo(map)
-            .bindPopup("<b>Kwa Nyuki</b><br>Reference Landmark.")
-            .openPopup();
+<!-- ═══════════════ ACTIVATED CHARCOAL ═══════════════ -->
+<section id="charcoal">
+  <p class="section-title">🖤 Activated Charcoal</p>
+  <p class="section-sub">Nature's powerful detox agent</p>
 
-    </script>
+  <div class="product-card">
+    <img src="https://images.pexels.com/photos/4099235/pexels-photo-4099235.jpeg?auto=compress&w=400" alt="Activated Charcoal" onerror="this.src='https://via.placeholder.com/400x190/222/fff?text=Activated+Charcoal'">
+    <div class="card-body">
+      <span class="card-badge">Detox & Cleanse</span>
+      <div class="card-title">Activated Charcoal</div>
+      <p class="card-desc">Pure activated charcoal made from natural coconut shells. A centuries-old remedy now backed by science for powerful detoxification and gut health.</p>
+      <ul class="benefits-list">
+        <li>Removes toxins & poisons from the body</li>
+        <li>Relieves bloating & gas</li>
+        <li>Supports kidney health</li>
+        <li>Whitens teeth naturally</li>
+        <li>Helps with food poisoning relief</li>
+      </ul>
+      <a href="https://wa.me/0719428046?text=Hello!%20I%27m%20interested%20in%20Activated%20Charcoal" class="order-btn">Order via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CINNAMON ═══════════════ -->
+<section id="cinnamon">
+  <p class="section-title">🟤 Cinnamon</p>
+  <p class="section-sub">The ancient spice of healing</p>
+
+  <div class="product-card">
+    <img src="https://images.pexels.com/photos/65882/chocolate-dark-coffee-confiserie-65882.jpeg?auto=compress&w=400" alt="Cinnamon" onerror="this.src='https://via.placeholder.com/400x190/8B4513/fff?text=Cinnamon'">
+    <div class="card-body">
+      <span class="card-badge">Blood Sugar & Heart</span>
+      <div class="card-title">Ceylon Cinnamon</div>
+      <p class="card-desc">Pure organic cinnamon sticks and powder. Used for thousands of years in traditional medicine for its powerful healing properties.</p>
+      <ul class="benefits-list">
+        <li>Lowers blood sugar levels</li>
+        <li>Reduces bad cholesterol (LDL)</li>
+        <li>Powerful anti-inflammatory</li>
+        <li>Fights bacterial & fungal infections</li>
+        <li>Boosts brain function & memory</li>
+      </ul>
+      <a href="https://wa.me/0719428046?text=Hello!%20I%27m%20interested%20in%20Cinnamon" class="order-btn">Order via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ YELLOW DOCK ═══════════════ -->
+<section id="yellowdock">
+  <p class="section-title">🌿 Yellow Dock</p>
+  <p class="section-sub">The root of iron & liver health</p>
+
+  <div class="product-card">
+    <img src="https://images.pexels.com/photos/1458671/pexels-photo-1458671.jpeg?auto=compress&w=400" alt="Yellow Dock" onerror="this.src='https://via.placeholder.com/400x190/DAA520/333?text=Yellow+Dock'">
+    <div class="card-body">
+      <span class="card-badge">Blood & Liver</span>
+      <div class="card-title">Yellow Dock Root</div>
+      <p class="card-desc">A traditional herbal root known for its rich iron content and liver-cleansing properties. Ideal for those dealing with anaemia and digestive issues.</p>
+      <ul class="benefits-list">
+        <li>Treats iron deficiency & anaemia</li>
+        <li>Cleanses and supports the liver</li>
+        <li>Improves skin conditions (eczema, acne)</li>
+        <li>Relieves constipation naturally</li>
+        <li>Supports lymphatic system</li>
+      </ul>
+      <a href="https://wa.me/0719428046?text=Hello!%20I%27m%20interested%20in%20Yellow%20Dock" class="order-btn">Order via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ MORINGA ═══════════════ -->
+<section id="moringa">
+  <p class="section-title">💚 Moringa</p>
+  <p class="section-sub">The miracle tree of Africa</p>
+
+  <div class="product-card">
+    <img src="https://images.pexels.com/photos/1490580/pexels-photo-1490580.jpeg?auto=compress&w=400" alt="Moringa" onerror="this.src='https://via.placeholder.com/400x190/228B22/fff?text=Moringa'">
+    <div class="card-body">
+      <span class="card-badge">Superfood Powerhouse</span>
+      <div class="card-title">Moringa Leaf Powder</div>
+      <p class="card-desc">Called the "Tree of Life" in Africa, moringa is packed with vitamins, minerals and antioxidants. More nutrients per gram than almost any other plant.</p>
+      <ul class="benefits-list">
+        <li>Boosts energy & reduces fatigue</li>
+        <li>Rich in iron, calcium & Vitamin C</li>
+        <li>Controls blood pressure & sugar</li>
+        <li>Strengthens immune system</li>
+        <li>Supports breastfeeding mothers</li>
+      </ul>
+      <a href="https://wa.me/0719428046?text=Hello!%20I%27m%20interested%20in%20Moringa" class="order-btn">Order via WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about">
+  <p class="section-title">About Us</p>
+  <p class="section-sub">Who we are & what we believe</p>
+
+  <div class="about-box">
+    <h3>🌿 Our Mission</h3>
+    <p>At <strong>Health By Nature</strong>, we believe the earth provides everything needed for healing. Our mission is to bring pure, natural herbal products to every home — making good health affordable and accessible for all.</p>
+  </div>
+
+  <div class="about-box">
+    <h3>👤 Director</h3>
+    <p><strong>Jane Macharia</strong> — Director &amp; Herbalist<br><br>
+    With years of experience in natural health and herbal medicine, Jane is passionate about educating communities on the healing power of nature.</p>
+  </div>
+
+  <div class="about-box">
+    <h3>💡 Why Choose Us?</h3>
+    <p>✅ All products are 100% natural<br>
+    ✅ No harmful chemicals or additives<br>
+    ✅ Free health consultation<br>
+    ✅ Affordable prices for every budget<br>
+    ✅ Trusted by hundreds of families</p>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact">
+  <p class="section-title">Contact Us</p>
+  <p class="section-sub">We're here to help you heal</p>
+
+  <div class="contact-card">
+    <h3>📍 Health By Nature</h3>
+    <div class="contact-item"><span class="contact-icon">👩‍⚕️</span><span>Jane Machajira — Director</span></div>
+    <div class="contact-item"><span class="contact-icon">📞</span><span>0719 428 046</span></div>
+    <div class="contact-item"><span class="contact-icon">📞</span><span>079 279 172</span></div>
+    <div class="contact-item"><span class="contact-icon">🕒</span><span>Mon–Sat: 8am – 6pm</span></div>
+  </div>
+
+  <a href="https://wa.me/263719428046" class="whatsapp-btn">💬 Chat on WhatsApp</a>
+
+  <div style="background:#fff;border-radius:14px;padding:16px;margin-top:14px;box-shadow:var(--shadow);">
+    <p style="font-size:0.85rem;color:#555;text-align:center;margin-bottom:12px;">📦 Place your order or ask any health questions</p>
+    <a href="tel:0719428046" style="display:block;text-align:center;background:var(--orange);color:#fff;padding:12px;border-radius:10px;font-weight:700;text-decoration:none;margin-bottom:8px;">📞 Call: 0719 428 046</a>
+    <a href="tel:079279172" style="display:block;text-align:center;background:var(--green);color:#fff;padding:12px;border-radius:10px;font-weight:700;text-decoration:none;">📞 Call: 079 279 172</a>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <strong>HEALTH BY NATURE</strong><br>
+  A Solution to All Health Problems<br>
+  <span style="color:#a1887f;">© 2024 Health By Nature. All rights reserved.</span>
+</footer>
+
+<script>
+  function showSection(id, navEl) {
+    // Hide all sections
+    document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+    // Show target
+    document.getElementById(id).classList.add('active');
+    // Update nav
+    document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+    if (navEl) navEl.classList.add('active');
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return false;
+  }
+</script>
 </body>
 </html>
