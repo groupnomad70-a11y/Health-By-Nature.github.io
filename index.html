@@ -3,843 +3,1042 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Health By Nature | Dioces</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<title>Muthoni & Architecture</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-:root{
-  --vine:#0F1F0F;
-  --skin:#2B5E2B;
-  --flesh:#4E9A3A;
-  --bright:#8DC654;
+:root {
+  --dark:#0F1F0F;
+  --chartreuse:#8DC654;
   --lime:#C8E86A;
-  --pith:#F5F2DC;
   --flame:#C94A1A;
-  --gold:#D4A017;
-  --ink:#1A1A0F;
-}
-body{
-  font-family:'DM Sans',sans-serif;
-  background:#FAFEF3;
-  color:var(--ink);
-  width:100%;
-  overflow-x:hidden;
+  --gold:#D4A574;
+  --deep-green:#1B5E20;
+  --bright-lime:#A5D6A7;
+  --warm-amber:#B8956A;
+  --warm-coral:#E8997A;
+  --white:#FFFFFF;
+  --cream:#FFFDE7;
 }
 
-/* NAV */
-.nav{
-  display:flex;overflow-x:auto;gap:0;
-  background:var(--vine);
-  scrollbar-width:none;
-  position:sticky;top:0;z-index:300;
-  border-bottom:1px solid rgba(200,232,106,0.15);
-}
-.nav::-webkit-scrollbar{display:none;}
-.nav-btn{
-  flex-shrink:0;padding:13px 16px;
-  font-family:'DM Sans',sans-serif;
-  font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
-  color:rgba(200,232,106,0.45);background:none;border:none;cursor:pointer;
-  border-bottom:2px solid transparent;
-  transition:all .25s;white-space:nowrap;
-}
-.nav-btn.on{color:var(--lime);border-bottom-color:var(--bright);}
-
-/* SCREENS */
-.screen{display:none;}
-.screen.on{display:block;animation:fadeUp .32s ease both;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
-
-/* ══ HOME ══ */
-.hero-wrap{
-  background:var(--vine);
-  padding:44px 24px 52px;
-  text-align:center;position:relative;overflow:hidden;
-  min-height:300px;display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-}
-.hero-leaf-svg{position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;}
-.hero-eyebrow{
-  font-size:9px;letter-spacing:0.24em;text-transform:uppercase;
-  color:var(--lime);font-weight:500;margin-bottom:18px;
-  border:1px solid rgba(200,232,106,0.22);
-  padding:5px 16px;border-radius:20px;display:inline-block;
-  position:relative;
-}
-.hero-h1{
-  font-family:'Cormorant Garamond',serif;
-  font-size:3.6rem;font-weight:300;line-height:1.0;
-  color:#fff;margin-bottom:14px;
-  letter-spacing:-0.015em;
-  position:relative;
-}
-.hero-h1 em{color:var(--lime);font-style:italic;font-weight:600;}
-.hero-sub{
-  font-size:12px;color:rgba(255,255,255,0.5);
-  margin-bottom:30px;line-height:1.75;max-width:250px;
-  position:relative;
-}
-.hero-ctas{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;position:relative;}
-.btn-primary{
-  background:var(--flame);color:#fff;
-  padding:12px 24px;border-radius:3px;
-  font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-  border:none;cursor:pointer;transition:opacity .2s;
-}
-.btn-primary:active{opacity:.82;}
-.btn-ghost{
-  background:none;color:rgba(255,255,255,0.65);
-  padding:12px 24px;border-radius:3px;
-  font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-  border:1px solid rgba(255,255,255,0.18);cursor:pointer;
-}
-.btn-ghost:active{background:rgba(255,255,255,0.06);}
-
-/* feature strip */
-.feat-strip{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  border-bottom:1px solid rgba(141,198,84,0.1);
-}
-.feat{
-  padding:16px 6px;text-align:center;
-  border-right:1px solid rgba(141,198,84,0.1);
-  background:#fff;
-}
-.feat:last-child{border-right:none;}
-.feat-icon{font-size:1.4rem;display:block;margin-bottom:5px;}
-.feat-label{font-size:8px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;color:var(--skin);}
-
-/* teaser */
-.teaser{padding:26px 20px 10px;}
-.teaser-eyebrow{font-size:9px;letter-spacing:0.16em;text-transform:uppercase;color:var(--flesh);font-weight:500;margin-bottom:6px;}
-.teaser-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.7rem;font-weight:600;color:var(--vine);line-height:1.15;margin-bottom:18px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* mini scroll */
-.mini-scroll{display:flex;gap:10px;overflow-x:auto;padding:0 20px 18px;scrollbar-width:none;}
-.mini-scroll::-webkit-scrollbar{display:none;}
-.mini-card{flex-shrink:0;width:112px;cursor:pointer;}
-.mini-swatch{
-  width:112px;height:112px;border-radius:6px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:2.4rem;margin-bottom:8px;
-  transition:transform .18s;
-}
-.mini-card:active .mini-swatch{transform:scale(.92);}
-.mini-name{font-size:11px;font-weight:500;color:var(--ink);letter-spacing:0.02em;}
-.mini-price{font-size:10px;color:var(--flesh);font-weight:400;margin-top:2px;}
-
-/* contact strip */
-.cta-strip{
-  background:var(--vine);margin:20px;border-radius:6px;
-  padding:22px 18px;text-align:center;
-}
-.cta-strip-eyebrow{font-size:8px;color:rgba(200,232,106,0.4);letter-spacing:0.14em;text-transform:uppercase;margin-bottom:6px;}
-.cta-strip h3{font-family:'Cormorant Garamond',serif;font-size:1.3rem;font-weight:600;color:#fff;margin-bottom:4px;}
-.cta-strip p{font-size:11px;color:rgba(255,255,255,0.4);line-height:1.6;}
-.strip-btns{display:flex;gap:8px;margin-top:16px;}
-.strip-btn{
-  flex:1;padding:11px 6px;border-radius:3px;
-  font-size:10px;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;
-  text-align:center;border:none;cursor:pointer;
-}
-.strip-btn.call{background:var(--flame);color:#fff;}
-.strip-btn.wa{background:#1faa58;color:#fff;}
-
-/* ══ OILS ══ */
-.oils-hero{
-  background:var(--vine);
-  padding:36px 24px 40px;text-align:center;position:relative;overflow:hidden;
-}
-.oils-hero::before{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(ellipse 70% 60% at 50% 30%,rgba(141,198,84,0.07) 0%,transparent 70%);
-  pointer-events:none;
-}
-.oils-kicker{
-  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--lime);font-weight:500;margin-bottom:14px;display:block;position:relative;
-}
-.oils-h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.6rem;font-weight:300;color:#fff;line-height:1.05;
-  margin-bottom:10px;position:relative;
-}
-.oils-h2 strong{font-weight:600;color:var(--lime);}
-.oils-sub{font-size:11px;color:rgba(255,255,255,0.38);letter-spacing:0.07em;position:relative;}
-
-/* oil tabs */
-.oil-tabs{
-  display:flex;overflow-x:auto;gap:0;
-  background:#fff;
-  border-bottom:1px solid rgba(141,198,84,0.12);
-  scrollbar-width:none;
-}
-.oil-tabs::-webkit-scrollbar{display:none;}
-.oil-tab{
-  flex:1;min-width:82px;padding:15px 6px 13px;text-align:center;
-  border:none;background:none;cursor:pointer;
-  border-bottom:2px solid transparent;
-  transition:border-color .2s;
-}
-.oil-tab.on{border-bottom-color:var(--flesh);}
-.oil-tab-icon{font-size:1.6rem;display:block;margin-bottom:5px;}
-.oil-tab-label{
-  font-size:9px;font-weight:500;letter-spacing:0.07em;
-  text-transform:uppercase;color:var(--skin);
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--dark);
+  overflow-x: hidden;
 }
 
-/* oil panels */
-.oil-panel{display:none;padding:26px 20px 30px;background:#fff;}
-.oil-panel.on{display:block;animation:fadeUp .28s ease both;}
-.oil-accent-line{width:28px;height:3px;border-radius:2px;margin-bottom:18px;}
-.oil-name-lg{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.2rem;font-weight:600;color:var(--vine);
-  margin-bottom:8px;line-height:1.05;
-}
-.oil-name-lg em{font-style:italic;font-weight:300;}
-.oil-tag-row{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:16px;}
-.oil-tag{
-  font-size:8px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-  padding:4px 10px;border-radius:3px;
-}
-.oil-pitch{
-  font-size:14px;color:#3A3A2A;line-height:1.85;margin-bottom:20px;
-  font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:300;
-}
-.oil-meta{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:14px 0;border-top:1px solid rgba(141,198,84,0.12);
-  border-bottom:1px solid rgba(141,198,84,0.12);
-  margin-bottom:18px;
-}
-.oil-volume{font-size:11px;color:var(--flesh);font-weight:500;letter-spacing:0.07em;text-transform:uppercase;}
-.oil-price-lg{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2rem;font-weight:600;color:var(--flame);
-}
-.oil-order-btn{
-  display:block;width:100%;padding:14px;border-radius:3px;
-  background:var(--vine);color:#fff;
-  font-size:10px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;
-  border:none;cursor:pointer;text-decoration:none;text-align:center;
+/* ════ HEADER/NAV ════ */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--dark);
+  color: var(--white);
+  padding: 14px 20px;
+  z-index: 300;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* ══ POWDERS ══ */
-.powders-hero{
-  background:#0A0F0A;
-  padding:36px 24px 40px;text-align:center;
-}
-.pw-kicker{
-  font-size:9px;letter-spacing:0.22em;text-transform:uppercase;
-  color:var(--bright);font-weight:500;margin-bottom:14px;display:block;
-}
-.pw-h2{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.6rem;font-weight:300;color:#fff;line-height:1.05;margin-bottom:10px;
-}
-.pw-h2 strong{font-weight:600;color:var(--gold);}
-.pw-sub{font-size:11px;color:rgba(255,255,255,0.28);letter-spacing:0.07em;}
-
-/* serve cards */
-.serve-list{padding:20px;display:flex;flex-direction:column;gap:14px;}
-.serve{
-  border-radius:6px;overflow:hidden;
-  background:#fff;
-  border:1px solid rgba(141,198,84,0.1);
-}
-.serve-head{
-  display:flex;align-items:stretch;
-  border-bottom:1px solid rgba(141,198,84,0.1);
-}
-.serve-cup{
-  width:74px;flex-shrink:0;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:14px 8px;gap:4px;
-}
-.cup-glyph{font-size:2rem;line-height:1;}
-.cup-qty{
-  font-size:8px;font-weight:500;letter-spacing:0.1em;
-  text-transform:uppercase;color:var(--flesh);
-}
-.serve-id{padding:14px 14px;flex:1;display:flex;flex-direction:column;justify-content:center;}
-.serve-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.25rem;font-weight:600;color:var(--vine);margin-bottom:5px;
-}
-.serve-gram-price{display:flex;align-items:center;gap:8px;}
-.serve-gram{font-size:10px;color:#999;}
-.serve-price{
-  font-size:12px;font-weight:500;color:var(--flame);
-  background:rgba(201,74,26,0.07);padding:2px 8px;border-radius:3px;
+.logo-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
-.serve-body{padding:14px 16px 16px;}
-.serve-ritual-label{
-  font-size:8px;letter-spacing:0.18em;text-transform:uppercase;
-  color:var(--bright);font-weight:500;margin-bottom:7px;display:block;
-}
-.serve-ritual-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.05rem;font-weight:600;color:var(--vine);
-  margin-bottom:9px;font-style:italic;
-}
-.serve-desc{font-size:12.5px;color:#4A4A3A;line-height:1.85;}
-.serve-tags{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0 12px;}
-.stag{
-  font-size:8px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
-  padding:3px 8px;border-radius:3px;border:1px solid;
-}
-.s-green{background:rgba(78,154,58,0.07);color:#2B6B0F;border-color:rgba(78,154,58,0.2);}
-.s-red{background:rgba(201,74,26,0.07);color:#8B2A0A;border-color:rgba(201,74,26,0.2);}
-.s-gold{background:rgba(212,160,23,0.09);color:#7A5A00;border-color:rgba(212,160,23,0.3);}
-.s-purple{background:rgba(100,60,160,0.07);color:#4A2A80;border-color:rgba(100,60,160,0.2);}
-
-.serve-wa{
-  display:block;width:100%;padding:12px;
-  background:var(--vine);color:#fff;border-radius:3px;
-  font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-  border:none;cursor:pointer;text-align:center;text-decoration:none;
+.logo-brand .name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--chartreuse);
+  line-height: 1;
 }
 
-/* ══ CONTACT ══ */
-.contact-wrap{padding:32px 20px 28px;}
-.contact-headline{
-  font-family:'Cormorant Garamond',serif;
-  font-size:2.4rem;font-weight:600;color:var(--vine);
-  margin-bottom:4px;line-height:1.0;
+.logo-brand .tagline {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.6rem;
+  font-weight: 300;
+  color: var(--lime);
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
-.contact-sub{
-  font-size:11px;color:var(--flesh);letter-spacing:0.08em;
-  text-transform:uppercase;margin-bottom:26px;
-}
-.contact-card-inner{
-  background:var(--vine);border-radius:6px;padding:24px 20px;
-}
-.contact-lede{
-  font-size:8px;color:rgba(200,232,106,0.4);
-  letter-spacing:0.14em;text-transform:uppercase;margin-bottom:4px;
-}
-.contact-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.5rem;font-weight:600;color:#fff;margin-bottom:20px;
-}
-.contact-rows{margin-bottom:22px;}
-.contact-row{
-  display:flex;align-items:center;gap:12px;
-  padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.05);
-}
-.contact-row:last-child{border-bottom:none;}
-.contact-row-icon{font-size:15px;flex-shrink:0;}
-.contact-row-text{font-size:12px;color:rgba(255,255,255,0.55);}
-.contact-row-text strong{color:rgba(200,232,106,0.85);font-weight:500;}
-.contact-btn{
-  display:block;width:100%;padding:13px;border-radius:3px;
-  font-size:10px;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
-  border:none;cursor:pointer;margin-bottom:8px;text-align:center;
-  text-decoration:none;
-}
-.c-call1{background:var(--flame);color:#fff;}
-.c-call2{background:rgba(255,255,255,0.07);color:rgba(200,232,106,0.8);border:1px solid rgba(200,232,106,0.12);}
-.c-wa{background:#1faa58;color:#fff;}
 
-/* ══ FOOTER ══ */
-footer{
-  background:var(--vine);padding:22px 20px;text-align:center;margin-top:6px;
+nav {
+  display: flex;
+  gap: 12px;
 }
-.footer-name{
-  font-family:'Cormorant Garamond',serif;
-  font-size:1.05rem;font-weight:600;color:var(--lime);
-  letter-spacing:0.06em;display:block;margin-bottom:5px;
+
+nav button {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 400;
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: rgba(255,255,255,0.1);
+  color: var(--lime);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
-.footer-sub{
-  font-size:8px;color:rgba(200,232,106,0.25);
-  letter-spacing:0.12em;text-transform:uppercase;
+
+nav button.active {
+  background: var(--chartreuse);
+  color: var(--dark);
+  font-weight: 500;
 }
+
+nav button:hover:not(.active) {
+  background: rgba(141, 198, 84, 0.2);
+}
+
+/* ════ MAIN CONTENT ════ */
+main {
+  margin-top: 56px;
+  min-height: 100vh;
+}
+
+section {
+  display: none;
+  min-height: calc(100vh - 56px);
+  padding: 0;
+}
+
+section.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ════ HOME SCREEN ════ */
+#home {
+  background: linear-gradient(135deg, var(--dark) 0%, #1a2a1a 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+#home h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.2rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 12px;
+  line-height: 1.1;
+}
+
+#home h1 .stress {
+  color: var(--chartreuse);
+  font-weight: 600;
+}
+
+#home p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: var(--lime);
+  max-width: 280px;
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+
+.home-cta {
+  display: inline-block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 12px 32px;
+  background: var(--chartreuse);
+  color: var(--dark);
+  border-radius: 24px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.home-cta:hover {
+  background: var(--lime);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(141, 198, 84, 0.3);
+}
+
+/* ════ OILS SCREEN ════ */
+#oils {
+  background: var(--white);
+  padding: 20px;
+  padding-bottom: 40px;
+}
+
+.oils-header {
+  text-align: center;
+  margin-bottom: 28px;
+  margin-top: 12px;
+}
+
+.oils-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.oils-header p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #888;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.oils-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 24px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  scroll-behavior: smooth;
+}
+
+.oil-tab {
+  flex-shrink: 0;
+  padding: 10px 18px;
+  border-radius: 20px;
+  border: 2px solid #ddd;
+  background: var(--white);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.oil-tab.active {
+  border-color: transparent;
+  font-weight: 500;
+  color: var(--white);
+}
+
+.oil-tab[data-oil="jojoba"].active {
+  background: var(--gold);
+}
+
+.oil-tab[data-oil="moringa"].active {
+  background: var(--deep-green);
+}
+
+.oil-tab[data-oil="turmeric"].active {
+  background: var(--flame);
+}
+
+.oil-tab[data-oil="aloe"].active {
+  background: var(--bright-lime);
+  color: var(--dark);
+}
+
+.oil-panel {
+  display: none;
+  animation: slideIn 0.3s ease-out;
+}
+
+.oil-panel.active {
+  display: block;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.oil-hero {
+  border-radius: 16px;
+  padding: 28px 20px;
+  color: var(--white);
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.oil-hero h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-bottom: 8px;
+  line-height: 1.1;
+}
+
+.oil-hero .botanical {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 300;
+  font-style: italic;
+  opacity: 0.9;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.oil-hero p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  margin-top: 12px;
+  line-height: 1.5;
+  opacity: 0.95;
+}
+
+.oil-hero[data-oil="jojoba"] {
+  background: linear-gradient(135deg, var(--gold), #C19A6B);
+}
+
+.oil-hero[data-oil="moringa"] {
+  background: linear-gradient(135deg, var(--deep-green), #2d6a2d);
+}
+
+.oil-hero[data-oil="turmeric"] {
+  background: linear-gradient(135deg, var(--flame), #E8885F);
+}
+
+.oil-hero[data-oil="aloe"] {
+  background: linear-gradient(135deg, var(--bright-lime), #A5D6A7);
+  color: var(--dark);
+}
+
+.oil-benefits {
+  background: #f9f9f9;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.oil-benefits h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 14px;
+}
+
+.benefit-list {
+  list-style: none;
+}
+
+.benefit-list li {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #555;
+  padding: 8px 0 8px 20px;
+  position: relative;
+  line-height: 1.5;
+}
+
+.benefit-list li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  color: var(--chartreuse);
+  font-weight: 600;
+}
+
+.oil-serve {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #eee;
+}
+
+.oil-serve h4 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.oil-serve p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.oil-cta {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+
+.oil-cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ════ POWDERS SCREEN ════ */
+#powders {
+  background: var(--white);
+  padding: 20px;
+  padding-bottom: 40px;
+}
+
+.powders-header {
+  text-align: center;
+  margin-bottom: 24px;
+  margin-top: 12px;
+}
+
+.powders-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--dark);
+  margin-bottom: 8px;
+}
+
+.powders-header p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #888;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.serve-card {
+  background: var(--white);
+  border-radius: 14px;
+  padding: 18px;
+  margin-bottom: 16px;
+  border: 2px solid transparent;
+  display: flex;
+  gap: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition: all 0.2s;
+}
+
+.serve-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+  transform: translateY(-2px);
+}
+
+.serve-card.prestige {
+  border-color: var(--flame);
+  background: linear-gradient(135deg, #fff5f0, var(--white));
+}
+
+.serve-cup {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+
+.serve-cup.charcoal {
+  background: linear-gradient(135deg, #3a3a3a, #1a1a1a);
+}
+
+.serve-cup.hibiscus {
+  background: linear-gradient(135deg, var(--warm-coral), #D87C5D);
+}
+
+.serve-cup.chamomile {
+  background: linear-gradient(135deg, #FFD700, #F4C430);
+}
+
+.serve-cup.tongkat-ali {
+  background: linear-gradient(135deg, var(--warm-amber), #A0826D);
+}
+
+.serve-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.serve-header {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.serve-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--dark);
+}
+
+.serve-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--chartreuse);
+  padding: 2px 8px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.serve-card.prestige .serve-label {
+  background: var(--flame);
+}
+
+.serve-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: #666;
+  line-height: 1.4;
+  margin-bottom: 10px;
+}
+
+.serve-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.serve-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--flame);
+}
+
+.serve-btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  transition: all 0.2s;
+  background: var(--chartreuse);
+  color: var(--dark);
+}
+
+.serve-card.prestige .serve-btn {
+  background: var(--flame);
+  color: var(--white);
+}
+
+.serve-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+/* ════ CONTACT SCREEN ════ */
+#contact {
+  background: var(--dark);
+  padding: 20px;
+  padding-bottom: 40px;
+}
+
+.contact-header {
+  text-align: center;
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.contact-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: var(--white);
+  margin-bottom: 8px;
+}
+
+.contact-header p {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--lime);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.contact-card {
+  background: linear-gradient(135deg, var(--deep-green), var(--dark));
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+}
+
+.contact-card h3 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: var(--chartreuse);
+  margin-bottom: 16px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.contact-item .icon {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.contact-item span {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--lime);
+}
+
+.contact-item a {
+  color: var(--lime);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-item a:hover {
+  color: var(--white);
+}
+
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.contact-btn {
+  display: block;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.2s;
+}
+
+.contact-btn.whatsapp {
+  background: #25D366;
+  color: var(--white);
+}
+
+.contact-btn.whatsapp:hover {
+  background: #20BA5A;
+  transform: translateY(-2px);
+}
+
+.contact-btn.call {
+  background: var(--chartreuse);
+  color: var(--dark);
+}
+
+.contact-btn.call:hover {
+  background: var(--lime);
+  transform: translateY(-2px);
+}
+
+/* ════ FOOTER ════ */
+footer {
+  background: #1a1a1a;
+  color: #999;
+  text-align: center;
+  padding: 16px 20px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 300;
+  border-top: 1px solid #333;
+}
+
+footer strong {
+  color: var(--chartreuse);
+}
+
+/* ════ SCROLLBAR ════ */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--chartreuse);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--lime);
+}
+
 </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="nav" role="navigation" aria-label="Main navigation">
-  <button class="nav-btn on" onclick="gotoScreen('home',this)">Home</button>
-  <button class="nav-btn" onclick="gotoScreen('oils',this)">Beauty Oils</button>
-  <button class="nav-btn" onclick="gotoScreen('powders',this)">Powders</button>
-  <button class="nav-btn" onclick="gotoScreen('contact',this)">Contact</button>
-</nav>
+<!-- HEADER -->
+<header>
+  <div class="logo-brand">
+    <div class="name">Muthoni &</div>
+    <div class="tagline">Architecture</div>
+  </div>
+  <nav id="mainNav">
+    <button class="nav-btn active" data-screen="home">Home</button>
+    <button class="nav-btn" data-screen="oils">Oils</button>
+    <button class="nav-btn" data-screen="powders">Powders</button>
+    <button class="nav-btn" data-screen="contact">Contact</button>
+  </nav>
+</header>
 
-<!-- ══════════════ HOME ══════════════ -->
-<div class="screen on" id="s-home">
+<main>
 
-  <div class="hero-wrap">
-    <svg class="hero-leaf-svg" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <ellipse cx="340" cy="45" rx="95" ry="58" fill="rgba(141,198,84,0.05)" transform="rotate(-28 340 45)"/>
-      <ellipse cx="55" cy="230" rx="75" ry="46" fill="rgba(78,154,58,0.06)" transform="rotate(22 55 230)"/>
-      <ellipse cx="190" cy="270" rx="55" ry="32" fill="rgba(200,232,106,0.04)" transform="rotate(-8 190 270)"/>
-      <path d="M55 65 Q115 22 162 82 Q114 132 55 65Z" fill="rgba(141,198,84,0.04)"/>
-      <path d="M295 185 Q345 148 368 208 Q325 245 295 185Z" fill="rgba(78,154,58,0.05)"/>
-      <path d="M55 65 Q108 52 162 82" fill="none" stroke="rgba(200,232,106,0.09)" stroke-width="0.5"/>
-      <path d="M295 185 Q330 168 368 208" fill="none" stroke="rgba(200,232,106,0.08)" stroke-width="0.5"/>
-      <circle cx="120" cy="48" r="1.5" fill="rgba(200,232,106,0.15)"/>
-      <circle cx="310" cy="220" r="1" fill="rgba(200,232,106,0.12)"/>
-      <circle cx="60" cy="150" r="1.2" fill="rgba(141,198,84,0.1)"/>
-    </svg>
-    <span class="hero-eyebrow">Botanical · Craft · Kenya</span>
-    <h1 class="hero-h1">Heal.<br><em>Glow.</em><br>Thrive.</h1>
-    <p class="hero-sub">Pure oils and superfood powders by Dioces — for skin, body, deep wellness.</p>
-    <div class="hero-ctas">
-      <button class="btn-primary" onclick="gotoScreen('oils',document.querySelectorAll('.nav-btn')[1])">Beauty Oils</button>
-      <button class="btn-ghost" onclick="gotoScreen('powders',document.querySelectorAll('.nav-btn')[2])">Wellness Powders</button>
-    </div>
+<!-- ══ HOME ══ -->
+<section id="home" class="active">
+  <h1>Nature's <span class="stress">Luxury</span></h1>
+  <p>Botanical oils and ritual powders curated for wellness in the modern world.</p>
+  <button class="home-cta" onclick="switchScreen('oils')">Explore Oils</button>
+</section>
+
+<!-- ══ OILS ══ -->
+<section id="oils">
+  <div class="oils-header">
+    <h2>Sacred <span class="stress">Oils</span></h2>
+    <p>Four essences for skin and ritual</p>
   </div>
 
-  <div class="feat-strip">
-    <div class="feat"><span class="feat-icon">🌱</span><span class="feat-label">Botanical</span></div>
-    <div class="feat"><span class="feat-icon">✨</span><span class="feat-label">Pure</span></div>
-    <div class="feat"><span class="feat-icon">🚚</span><span class="feat-label">Delivery</span></div>
-    <div class="feat"><span class="feat-icon">💬</span><span class="feat-label">Free Advice</span></div>
-  </div>
-
-  <div class="teaser">
-    <div class="teaser-eyebrow">Collections</div>
-    <div class="teaser-title">Nature's full<br>apothecary.</div>
-  </div>
-
-  <div class="mini-scroll">
-    <div class="mini-card" onclick="gotoScreen('oils',document.querySelectorAll('.nav-btn')[1])">
-      <div class="mini-swatch" style="background:linear-gradient(145deg,#F5EDD0,#E8D08A);">🌾</div>
-      <div class="mini-name">Jojoba Oil</div>
-      <div class="mini-price">Ksh 200</div>
-    </div>
-    <div class="mini-card" onclick="gotoScreen('oils',document.querySelectorAll('.nav-btn')[1])">
-      <div class="mini-swatch" style="background:linear-gradient(145deg,#D4F0C0,#8DC654);">🌿</div>
-      <div class="mini-name">Moringa Oil</div>
-      <div class="mini-price">Ksh 200</div>
-    </div>
-    <div class="mini-card" onclick="gotoScreen('oils',document.querySelectorAll('.nav-btn')[1])">
-      <div class="mini-swatch" style="background:linear-gradient(145deg,#FFF0A0,#D4A017);">🟡</div>
-      <div class="mini-name">Turmeric Oil</div>
-      <div class="mini-price">Ksh 200</div>
-    </div>
-    <div class="mini-card" onclick="gotoScreen('oils',document.querySelectorAll('.nav-btn')[1])">
-      <div class="mini-swatch" style="background:linear-gradient(145deg,#D0F5D0,#4E9A3A);">🌵</div>
-      <div class="mini-name">Aloe Vera Oil</div>
-      <div class="mini-price">Ksh 200</div>
-    </div>
-    <div class="mini-card" onclick="gotoScreen('powders',document.querySelectorAll('.nav-btn')[2])">
-      <div class="mini-swatch" style="background:linear-gradient(145deg,#2A2A2A,#111);">🖤</div>
-      <div class="mini-name">Charcoal</div>
-      <div class="mini-price">Ksh 200</div>
-    </div>
-    <div class="mini-card" onclick="gotoScreen('powders',document.querySelectorAll('.nav-btn')[2])">
-      <div class="mini-swatch" style="background:linear-gradient(145deg,#FFB0A0,#C94A1A);">🌺</div>
-      <div class="mini-name">Hibiscus</div>
-      <div class="mini-price">Ksh 400</div>
-    </div>
-    <div class="mini-card" onclick="gotoScreen('powders',document.querySelectorAll('.nav-btn')[2])">
-      <div class="mini-swatch" style="background:linear-gradient(145deg,#D0EDD8,#7AB88A);">🌊</div>
-      <div class="mini-name">Sea Moss</div>
-      <div class="mini-price">Ksh 600</div>
-    </div>
-    <div class="mini-card" onclick="gotoScreen('powders',document.querySelectorAll('.nav-btn')[2])">
-      <div class="mini-swatch" style="background:linear-gradient(145deg,#F0D8C0,#C08050);">⚡</div>
-      <div class="mini-name">Tongkat Ali</div>
-      <div class="mini-price">Ksh 1,000</div>
-    </div>
-  </div>
-
-  <div class="cta-strip">
-    <div class="cta-strip-eyebrow">Free consultation with every order</div>
-    <h3>Dioces</h3>
-    <p>Director &amp; Herbalist — guiding your wellness journey</p>
-    <div class="strip-btns">
-      <button class="strip-btn call" onclick="window.location.href='tel:0718420048'">📞 0718 420 048</button>
-      <button class="strip-btn wa" onclick="window.location.href='https://wa.me/254718420048?text=Hello%20Dioces!'">WhatsApp</button>
-    </div>
-  </div>
-
-</div><!-- /home -->
-
-
-<!-- ══════════════ OILS ══════════════ -->
-<div class="screen" id="s-oils">
-
-  <div class="oils-hero">
-    <span class="oils-kicker">Beauty Oils · 150 ml · Ksh 200 each</span>
-    <div class="oils-h2"><strong>Four</strong><br>sacred elixirs.</div>
-    <p class="oils-sub">Cold-pressed · Pure · Face, body &amp; hair</p>
-  </div>
-
-  <div class="oil-tabs" role="tablist" aria-label="Oil selection">
-    <button class="oil-tab on" role="tab" onclick="switchOil(0,this)">
-      <span class="oil-tab-icon">🌾</span>
-      <span class="oil-tab-label">Jojoba</span>
-    </button>
-    <button class="oil-tab" role="tab" onclick="switchOil(1,this)">
-      <span class="oil-tab-icon">🌿</span>
-      <span class="oil-tab-label">Moringa</span>
-    </button>
-    <button class="oil-tab" role="tab" onclick="switchOil(2,this)">
-      <span class="oil-tab-icon">🟡</span>
-      <span class="oil-tab-label">Turmeric</span>
-    </button>
-    <button class="oil-tab" role="tab" onclick="switchOil(3,this)">
-      <span class="oil-tab-icon">🌵</span>
-      <span class="oil-tab-label">Aloe Vera</span>
-    </button>
+  <div class="oils-tabs">
+    <button class="oil-tab active" data-oil="jojoba" onclick="switchOil('jojoba')">Jojoba</button>
+    <button class="oil-tab" data-oil="moringa" onclick="switchOil('moringa')">Moringa</button>
+    <button class="oil-tab" data-oil="turmeric" onclick="switchOil('turmeric')">Turmeric</button>
+    <button class="oil-tab" data-oil="aloe" onclick="switchOil('aloe')">Aloe</button>
   </div>
 
   <!-- JOJOBA -->
-  <div class="oil-panel on" id="op-0">
-    <div class="oil-accent-line" style="background:#D4A017;"></div>
-    <div class="oil-name-lg">Jojoba<br><em>Oil</em></div>
-    <div class="oil-tag-row">
-      <span class="oil-tag" style="background:rgba(212,160,23,0.1);color:#7A5A00;">Face Glow</span>
-      <span class="oil-tag" style="background:rgba(212,160,23,0.1);color:#7A5A00;">Hair Shine</span>
-      <span class="oil-tag" style="background:rgba(212,160,23,0.1);color:#7A5A00;">All Skin Types</span>
-      <span class="oil-tag" style="background:rgba(212,160,23,0.1);color:#7A5A00;">Anti-Ageing</span>
+  <div class="oil-panel active" id="panel-jojoba">
+    <div class="oil-hero" data-oil="jojoba">
+      <h3>Jojoba</h3>
+      <p class="botanical">Simmondsia Chinensis</p>
+      <p>The liquid gold that mirrors skin's own sebum. Absorbs instantly, restores elasticity without grease.</p>
     </div>
-    <p class="oil-pitch">The desert's liquid gold. Jojoba mirrors your skin's own sebum — it absorbs like a whisper, never greasy, always balanced. For faces that want to breathe and hair that wants to shine without weight.</p>
-    <div class="oil-meta">
-      <span class="oil-volume">150 ml · Cold-Pressed</span>
-      <span class="oil-price-lg">Ksh 200</span>
+    <div class="oil-benefits">
+      <h4>Why Jojoba</h4>
+      <ul class="benefit-list">
+        <li>Balances oily and dry skin simultaneously</li>
+        <li>Reduces fine lines and boosts collagen</li>
+        <li>Anti-inflammatory for acne-prone skin</li>
+        <li>Penetrates deep without clogging pores</li>
+        <li>Stable for storage — won't go rancid</li>
+      </ul>
     </div>
-    <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Jojoba%20Oil%20150ml%20Ksh200" class="oil-order-btn">Order via WhatsApp</a>
+    <div class="oil-serve">
+      <h4>Ritual Serve</h4>
+      <p>3–5 drops on clean damp skin morning and night. Work into face with upward strokes. Use as a serum layer before moisturizer, or mix with your favourite lotion.</p>
+      <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20to%20order%20Jojoba%20Oil." class="oil-cta" style="background: var(--gold);">Order Now</a>
+    </div>
   </div>
 
   <!-- MORINGA -->
-  <div class="oil-panel" id="op-1">
-    <div class="oil-accent-line" style="background:#4E9A3A;"></div>
-    <div class="oil-name-lg">Moringa<br><em>Oil</em></div>
-    <div class="oil-tag-row">
-      <span class="oil-tag" style="background:rgba(78,154,58,0.1);color:#2B6B0F;">Brightening</span>
-      <span class="oil-tag" style="background:rgba(78,154,58,0.1);color:#2B6B0F;">Healing</span>
-      <span class="oil-tag" style="background:rgba(78,154,58,0.1);color:#2B6B0F;">Moisture Lock</span>
-      <span class="oil-tag" style="background:rgba(78,154,58,0.1);color:#2B6B0F;">Dark Spots</span>
+  <div class="oil-panel" id="panel-moringa">
+    <div class="oil-hero" data-oil="moringa">
+      <h3>Moringa</h3>
+      <p class="botanical">Moringa Oleifera</p>
+      <p>The "tree of life" oil — antioxidant-dense, deeply nourishing. Skin drinks it in.</p>
     </div>
-    <p class="oil-pitch">Africa's miracle tree, pressed into a single drop. Rich in behenic and oleic acid — it seals hydration, calms micro-inflammation, and leaves skin visibly bright by morning. The continent's original glow serum.</p>
-    <div class="oil-meta">
-      <span class="oil-volume">150 ml · Cold-Pressed</span>
-      <span class="oil-price-lg">Ksh 200</span>
+    <div class="oil-benefits">
+      <h4>Why Moringa</h4>
+      <ul class="benefit-list">
+        <li>Packed with vitamins A, C, E — triple antioxidant</li>
+        <li>Reduces age spots and uneven tone</li>
+        <li>Strengthens skin barrier against pollution</li>
+        <li>Lightweight, no greasy residue</li>
+        <li>Supports hair and scalp health too</li>
+      </ul>
     </div>
-    <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Moringa%20Oil%20150ml%20Ksh200" class="oil-order-btn" style="background:#2B5E2B;">Order via WhatsApp</a>
+    <div class="oil-serve">
+      <h4>Ritual Serve</h4>
+      <p>2–4 drops on palm, warm between hands, press gently into face and neck. Perfect for evening rituals. Can be used as a leave-in hair serum — just 1–2 drops on damp ends.</p>
+      <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20to%20order%20Moringa%20Oil." class="oil-cta" style="background: var(--deep-green);">Order Now</a>
+    </div>
   </div>
 
   <!-- TURMERIC -->
-  <div class="oil-panel" id="op-2">
-    <div class="oil-accent-line" style="background:#C94A1A;"></div>
-    <div class="oil-name-lg">Turmeric<br><em>Oil</em></div>
-    <div class="oil-tag-row">
-      <span class="oil-tag" style="background:rgba(201,74,26,0.08);color:#8B2A0A;">Even Tone</span>
-      <span class="oil-tag" style="background:rgba(201,74,26,0.08);color:#8B2A0A;">Anti-Inflam.</span>
-      <span class="oil-tag" style="background:rgba(201,74,26,0.08);color:#8B2A0A;">Acne Fighter</span>
-      <span class="oil-tag" style="background:rgba(201,74,26,0.08);color:#8B2A0A;">Radiance</span>
+  <div class="oil-panel" id="panel-turmeric">
+    <div class="oil-hero" data-oil="turmeric">
+      <h3>Turmeric</h3>
+      <p class="botanical">Curcuma Longa Root Oil</p>
+      <p>Golden inflammation-fighter. Brightens and heals — the warrior oil.</p>
     </div>
-    <p class="oil-pitch">Ancient Ayurvedic gold in a bottle. Curcumin fights inflammation deep in the dermis while it evens tone and fades hyperpigmentation. Your skin's inflammation ends where Turmeric begins.</p>
-    <div class="oil-meta">
-      <span class="oil-volume">150 ml · Cold-Pressed</span>
-      <span class="oil-price-lg">Ksh 200</span>
+    <div class="oil-benefits">
+      <h4>Why Turmeric</h4>
+      <ul class="benefit-list">
+        <li>Curcumin penetrates deeply to calm irritation</li>
+        <li>Brightens dull skin and evens redness</li>
+        <li>Supports healing of blemishes and scars</li>
+        <li>Natural sun protection helper (SPF-adjacent)</li>
+        <li>Warming oil for joint massage</li>
+      </ul>
     </div>
-    <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Turmeric%20Oil%20150ml%20Ksh200" class="oil-order-btn" style="background:#8B2A0A;">Order via WhatsApp</a>
-  </div>
-
-  <!-- ALOE VERA -->
-  <div class="oil-panel" id="op-3">
-    <div class="oil-accent-line" style="background:#8DC654;"></div>
-    <div class="oil-name-lg">Aloe Vera<br><em>Oil</em></div>
-    <div class="oil-tag-row">
-      <span class="oil-tag" style="background:rgba(141,198,84,0.1);color:#3A7A1A;">Soothing</span>
-      <span class="oil-tag" style="background:rgba(141,198,84,0.1);color:#3A7A1A;">Eczema</span>
-      <span class="oil-tag" style="background:rgba(141,198,84,0.1);color:#3A7A1A;">Sunburn Relief</span>
-      <span class="oil-tag" style="background:rgba(141,198,84,0.1);color:#3A7A1A;">Daily Use</span>
-    </div>
-    <p class="oil-pitch">The great soother. Aloe's polysaccharides drink into parched skin like rain into dry earth — cooling, calming, restoring the barrier your skin was born with. Light enough for every single day.</p>
-    <div class="oil-meta">
-      <span class="oil-volume">150 ml · Cold-Pressed</span>
-      <span class="oil-price-lg">Ksh 200</span>
-    </div>
-    <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Aloe%20Vera%20Oil%20150ml%20Ksh200" class="oil-order-btn">Order via WhatsApp</a>
-  </div>
-
-</div><!-- /oils -->
-
-
-<!-- ══════════════ POWDERS ══════════════ -->
-<div class="screen" id="s-powders">
-
-  <div class="powders-hero">
-    <span class="pw-kicker">The Dioces Botanical Bar</span>
-    <div class="pw-h2">Serve it.<br><strong>Feel it work.</strong></div>
-    <p class="pw-sub">Seven superfoods · One perfect 200 ml cup</p>
-  </div>
-
-  <div class="serve-list">
-
-    <!-- ACTIVATED CHARCOAL -->
-    <div class="serve">
-      <div class="serve-head">
-        <div class="serve-cup" style="background:linear-gradient(180deg,#E8E8E8,#C0C0C0);">
-          <div class="cup-glyph">🖤</div>
-          <div class="cup-qty">200 ml</div>
-        </div>
-        <div class="serve-id">
-          <div class="serve-name">Activated Charcoal</div>
-          <div class="serve-gram-price">
-            <span class="serve-gram">250 g</span>
-            <span class="serve-price">Ksh 200</span>
-          </div>
-        </div>
-      </div>
-      <div class="serve-body">
-        <span class="serve-ritual-label">The Master Serve</span>
-        <div class="serve-ritual-name">The Midnight Cleanse</div>
-        <p class="serve-desc">Cold filtered water, 200 ml. Half a teaspoon of charcoal. Stir until ink-black — that is the draw. Drink on an empty stomach before the day finds you. It binds toxins in your gut the way darkness absorbs light: completely.</p>
-        <div class="serve-tags">
-          <span class="stag s-green">Gut Detox</span>
-          <span class="stag s-red">Hangover</span>
-          <span class="stag s-green">Bloating</span>
-          <span class="stag s-green">Kidneys</span>
-        </div>
-        <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Activated%20Charcoal%20250g%20Ksh200" class="serve-wa">Order — Ksh 200</a>
-      </div>
-    </div>
-
-    <!-- HIBISCUS -->
-    <div class="serve">
-      <div class="serve-head">
-        <div class="serve-cup" style="background:linear-gradient(180deg,#FFDDD0,#FFB0A0);">
-          <div class="cup-glyph">🌺</div>
-          <div class="cup-qty">200 ml</div>
-        </div>
-        <div class="serve-id">
-          <div class="serve-name">Hibiscus Powder</div>
-          <div class="serve-gram-price">
-            <span class="serve-gram">250 g</span>
-            <span class="serve-price">Ksh 400</span>
-          </div>
-        </div>
-      </div>
-      <div class="serve-body">
-        <span class="serve-ritual-label">The Master Serve</span>
-        <div class="serve-ritual-name">The Crimson Tonic</div>
-        <p class="serve-desc">Warm water in your 200 ml glass — not boiling, just hot enough to coax the colour. One heaped teaspoon of hibiscus. Watch it bleed red like a Kenyan sunset. Add a squeeze of lemon. A pinch of black pepper. Sip slowly. This is your blood pressure's reset button.</p>
-        <div class="serve-tags">
-          <span class="stag s-red">Blood Pressure</span>
-          <span class="stag s-purple">Skin Glow</span>
-          <span class="stag s-gold">Antioxidant</span>
-          <span class="stag s-green">Immunity</span>
-        </div>
-        <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Hibiscus%20Powder%20250g%20Ksh400" class="serve-wa">Order — Ksh 400</a>
-      </div>
-    </div>
-
-    <!-- CHIA SEED -->
-    <div class="serve">
-      <div class="serve-head">
-        <div class="serve-cup" style="background:linear-gradient(180deg,#E8F5D8,#C0DD97);">
-          <div class="cup-glyph">🫧</div>
-          <div class="cup-qty">200 ml</div>
-        </div>
-        <div class="serve-id">
-          <div class="serve-name">Chia Seed</div>
-          <div class="serve-gram-price">
-            <span class="serve-gram">250 g</span>
-            <span class="serve-price">Ksh 300</span>
-          </div>
-        </div>
-      </div>
-      <div class="serve-body">
-        <span class="serve-ritual-label">The Master Serve</span>
-        <div class="serve-ritual-name">The Living Water</div>
-        <p class="serve-desc">Into 200 ml of cold water: one tablespoon of chia seeds. Stir. Wait ten minutes — watch them bloom into tiny pearls, like rain caught in amber. Add a drizzle of honey. Drink with the seeds — they expand in your stomach, keeping you full and hydrated for hours. Omega-3 in every sip.</p>
-        <div class="serve-tags">
-          <span class="stag s-green">Omega-3</span>
-          <span class="stag s-green">Weight</span>
-          <span class="stag s-gold">Energy</span>
-          <span class="stag s-green">Hydration</span>
-        </div>
-        <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Chia%20Seed%20250g%20Ksh300" class="serve-wa">Order — Ksh 300</a>
-      </div>
-    </div>
-
-    <!-- CHAMOMILE -->
-    <div class="serve">
-      <div class="serve-head">
-        <div class="serve-cup" style="background:linear-gradient(180deg,#FEFAD0,#FAD060);">
-          <div class="cup-glyph">🌼</div>
-          <div class="cup-qty">200 ml</div>
-        </div>
-        <div class="serve-id">
-          <div class="serve-name">Chamomile</div>
-          <div class="serve-gram-price">
-            <span class="serve-gram">250 g</span>
-            <span class="serve-price">Ksh 500</span>
-          </div>
-        </div>
-      </div>
-      <div class="serve-body">
-        <span class="serve-ritual-label">The Master Serve</span>
-        <div class="serve-ritual-name">The Evening Unwind</div>
-        <p class="serve-desc">Into 200 ml of warm water, steeping at 80°C — never boiling — one teaspoon of chamomile powder. Let it soften the water to pale gold. Add a sliver of fresh ginger. No screens. Both hands on the cup. This is your nervous system signing off for the night. Anxiety quiets. Sleep deepens.</p>
-        <div class="serve-tags">
-          <span class="stag s-gold">Sleep</span>
-          <span class="stag s-purple">Anxiety</span>
-          <span class="stag s-green">Digestion</span>
-          <span class="stag s-gold">Anti-Inflam.</span>
-        </div>
-        <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Chamomile%20250g%20Ksh500" class="serve-wa">Order — Ksh 500</a>
-      </div>
-    </div>
-
-    <!-- SLIPPERY ELM -->
-    <div class="serve">
-      <div class="serve-head">
-        <div class="serve-cup" style="background:linear-gradient(180deg,#E8EDE0,#BCC8A8);">
-          <div class="cup-glyph">🌳</div>
-          <div class="cup-qty">200 ml</div>
-        </div>
-        <div class="serve-id">
-          <div class="serve-name">Slippery Elm</div>
-          <div class="serve-gram-price">
-            <span class="serve-gram">250 g</span>
-            <span class="serve-price">Ksh 400</span>
-          </div>
-        </div>
-      </div>
-      <div class="serve-body">
-        <span class="serve-ritual-label">The Master Serve</span>
-        <div class="serve-ritual-name">The Gut Coat</div>
-        <p class="serve-desc">One teaspoon of slippery elm into 200 ml of warm water. Stir until the water thickens — silky, slightly viscous, like the inner lining of bark. That is the mucilage. Drink first thing in the morning. It coats your entire gut wall like a soft bandage, calming ulcers, reflux, and IBS before your day begins.</p>
-        <div class="serve-tags">
-          <span class="stag s-green">Ulcers</span>
-          <span class="stag s-green">Reflux</span>
-          <span class="stag s-green">IBS</span>
-          <span class="stag s-gold">Gut Lining</span>
-        </div>
-        <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Slippery%20Elm%20250g%20Ksh400" class="serve-wa">Order — Ksh 400</a>
-      </div>
-    </div>
-
-    <!-- SEA MOSS -->
-    <div class="serve">
-      <div class="serve-head">
-        <div class="serve-cup" style="background:linear-gradient(180deg,#D0EDD8,#7AB88A);">
-          <div class="cup-glyph">🌊</div>
-          <div class="cup-qty">200 ml</div>
-        </div>
-        <div class="serve-id">
-          <div class="serve-name">Sea Moss</div>
-          <div class="serve-gram-price">
-            <span class="serve-gram">400 g</span>
-            <span class="serve-price">Ksh 600</span>
-          </div>
-        </div>
-      </div>
-      <div class="serve-body">
-        <span class="serve-ritual-label">The Master Serve</span>
-        <div class="serve-ritual-name">The Ocean Tonic</div>
-        <p class="serve-desc">One tablespoon of sea moss powder blended into 200 ml of warm water or cold-pressed juice. The colour shifts — almost iridescent. Stir until smooth. Sea moss carries 92 of the 102 minerals your body uses daily. Drink it like a covenant with your own biology. Thyroid, joints, gut, immunity — all listening.</p>
-        <div class="serve-tags">
-          <span class="stag s-gold">92 Minerals</span>
-          <span class="stag s-green">Thyroid</span>
-          <span class="stag s-purple">Skin</span>
-          <span class="stag s-green">Immunity</span>
-        </div>
-        <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Sea%20Moss%20400g%20Ksh600" class="serve-wa">Order — Ksh 600</a>
-      </div>
-    </div>
-
-    <!-- TONGKAT ALI -->
-    <div class="serve" style="border-color:rgba(201,74,26,0.22);">
-      <div class="serve-head" style="border-bottom-color:rgba(201,74,26,0.14);">
-        <div class="serve-cup" style="background:linear-gradient(180deg,#F0D8C0,#C08050);">
-          <div class="cup-glyph">⚡</div>
-          <div class="cup-qty">200 ml</div>
-        </div>
-        <div class="serve-id">
-          <div class="serve-name" style="color:#8B2A0A;">Tongkat Ali</div>
-          <div class="serve-gram-price">
-            <span class="serve-gram">100 g</span>
-            <span class="serve-price" style="color:#8B2A0A;background:rgba(139,42,10,0.07);">Ksh 1,000</span>
-          </div>
-        </div>
-      </div>
-      <div class="serve-body" style="background:rgba(201,74,26,0.02);">
-        <span class="serve-ritual-label" style="color:#C94A1A;">The Prestige Serve</span>
-        <div class="serve-ritual-name">The Power Root</div>
-        <p class="serve-desc">Half a teaspoon — no more — into 200 ml of warm water. This is not a drink you gulp; it is a drink you respect. Slightly bitter, deeply earthy, ancient. One cup in morning light, before training or the boardroom. Let the root lead.</p>
-        <div class="serve-tags">
-          <span class="stag s-red">Testosterone</span>
-          <span class="stag s-red">Drive</span>
-          <span class="stag s-green">Stress</span>
-          <span class="stag s-gold">Performance</span>
-        </div>
-        <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20want%20Tongkat%20Ali%20100g%20Ksh1000" class="serve-wa" style="background:#8B2A0A;">Order — Ksh 1,000</a>
-      </div>
-    </div>
-
-  </div><!-- /serve-list -->
-
-</div><!-- /powders -->
-
-
-<!-- ══════════════ CONTACT ══════════════ -->
-<div class="screen" id="s-contact">
-  <div class="contact-wrap">
-    <div class="contact-headline">Talk to<br>Dioces.</div>
-    <p class="contact-sub">Free consultation with every order</p>
-    <div class="contact-card-inner">
-      <div class="contact-lede">Director &amp; Herbalist</div>
-      <div class="contact-name">Dioces — Health By Nature</div>
-      <div class="contact-rows">
-        <div class="contact-row">
-          <span class="contact-row-icon">📞</span>
-          <span class="contact-row-text"><strong>0718 420 048</strong></span>
-        </div>
-        <div class="contact-row">
-          <span class="contact-row-icon">📞</span>
-          <span class="contact-row-text"><strong>0739 296 172</strong></span>
-        </div>
-        <div class="contact-row">
-          <span class="contact-row-icon">🕒</span>
-          <span class="contact-row-text">Mon–Sat · 8:00 am – 6:00 pm</span>
-        </div>
-        <div class="contact-row">
-          <span class="contact-row-icon">📍</span>
-          <span class="contact-row-text">Kenya · Fast delivery available</span>
-        </div>
-      </div>
-      <a href="tel:0718420048" class="contact-btn c-call1">📞 Call: 0718 420 048</a>
-      <a href="tel:0739296172" class="contact-btn c-call2">📞 Call: 0739 296 172</a>
-      <a href="https://wa.me/254718420048?text=Hello%20Dioces!%20I%20need%20a%20consultation." class="contact-btn c-wa">WhatsApp Dioces Now</a>
+    <div class="oil-serve">
+      <h4>Ritual Serve</h4>
+      <p>1–2 drops mixed into night serum or mask (it stains, so use before bed). Can also be gently massaged onto inflamed areas or used as a warming oil for aching joints and muscles.</p>
+      <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20to%20order%20Turmeric%20Oil." class="oil-cta" style="background: var(--flame);">Order Now</a>
     </div>
   </div>
-</div><!-- /contact -->
 
+  <!-- ALOE -->
+  <div class="oil-panel" id="panel-aloe">
+    <div class="oil-hero" data-oil="aloe">
+      <h3>Aloe</h3>
+      <p class="botanical">Aloe Barbadensis Leaf Oil</p>
+      <p>The cool relief. Hydrates and soothes — the gentle healer.</p>
+    </div>
+    <div class="oil-benefits">
+      <h4>Why Aloe</h4>
+      <ul class="benefit-list">
+        <li>Cools and calms irritated or sunburned skin</li>
+        <li>Hydrates without heaviness — featherweight</li>
+        <li>Speeds healing of minor cuts and grazes</li>
+        <li>Reduces redness from sensitivity or inflammation</li>
+        <li>Safe for all skin types, including sensitive</li>
+      </ul>
+    </div>
+    <div class="oil-serve">
+      <h4>Ritual Serve</h4>
+      <p>5–8 drops as an all-over body oil after shower, or 2–3 drops on face for instant hydration. Store in cool place for a naturally cooling effect. Use daily after sun exposure or anytime skin needs gentle relief.</p>
+      <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20to%20order%20Aloe%20Oil." class="oil-cta" style="background: var(--bright-lime); color: var(--dark);">Order Now</a>
+    </div>
+  </div>
 
+</section>
+
+<!-- ══ POWDERS ══ -->
+<section id="powders">
+  <div class="powders-header">
+    <h2>Ritual <span class="stress">Powders</span></h2>
+    <p>Master serves for daily healing</p>
+  </div>
+
+  <!-- CHARCOAL -->
+  <div class="serve-card">
+    <div class="serve-cup charcoal">🖤</div>
+    <div class="serve-body">
+      <div class="serve-header">
+        <div class="serve-name">Activated Charcoal</div>
+        <div class="serve-label">Master Serve</div>
+      </div>
+      <p class="serve-desc">Ancient detox. Binds to toxins and pulls them out. Perfect for morning fasts and gut resets.</p>
+      <div class="serve-footer">
+        <span class="serve-price">$8</span>
+        <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20Activated%20Charcoal%20Powder." class="serve-btn">Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- HIBISCUS -->
+  <div class="serve-card">
+    <div class="serve-cup hibiscus">🌺</div>
+    <div class="serve-body">
+      <div class="serve-header">
+        <div class="serve-name">Hibiscus Blend</div>
+        <div class="serve-label">Master Serve</div>
+      </div>
+      <p class="serve-desc">Tart, floral, vitamin-rich. Supports skin clarity from within. Brew as a tea or stir into smoothies.</p>
+      <div class="serve-footer">
+        <span class="serve-price">$7</span>
+        <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20Hibiscus%20Powder." class="serve-btn">Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHAMOMILE -->
+  <div class="serve-card">
+    <div class="serve-cup chamomile">☕</div>
+    <div class="serve-body">
+      <div class="serve-header">
+        <div class="serve-name">Chamomile Powder</div>
+        <div class="serve-label">Master Serve</div>
+      </div>
+      <p class="serve-desc">Calming ritual powder. Steep for sleep tea, or mask with honey for soothed skin.</p>
+      <div class="serve-footer">
+        <span class="serve-price">$6</span>
+        <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20Chamomile%20Powder." class="serve-btn">Order</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- TONGKAT ALI PRESTIGE -->
+  <div class="serve-card prestige">
+    <div class="serve-cup tongkat-ali">💎</div>
+    <div class="serve-body">
+      <div class="serve-header">
+        <div class="serve-name">Tongkat Ali</div>
+        <div class="serve-label">Prestige Serve</div>
+      </div>
+      <p class="serve-desc">The premium adaptogen. Legendary vitality root — energy, strength, resilience. Limited supply, high potency.</p>
+      <div class="serve-footer">
+        <span class="serve-price">$16</span>
+        <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20to%20order%20Tongkat%20Ali%20Prestige%20Powder." class="serve-btn">Order</a>
+      </div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══ CONTACT ══ -->
+<section id="contact">
+  <div class="contact-header">
+    <h2>Get in <span class="stress">Touch</span></h2>
+    <p>Direct from Muthoni</p>
+  </div>
+
+  <div class="contact-card">
+    <h3>📍 Muthoni & Architecture</h3>
+    <div class="contact-item">
+      <span class="icon">👩‍🌾</span>
+      <span>Muthoni — Herbalist &amp; Founder</span>
+    </div>
+    <div class="contact-item">
+      <span class="icon">📞</span>
+      <span><a href="tel:0719428046">0719 428 046</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="icon">📞</span>
+      <span><a href="tel:0792791722">079 279 172</a></span>
+    </div>
+    <div class="contact-item">
+      <span class="icon">🕒</span>
+      <span>Mon–Sat: 8am–6pm (Kenya Time)</span>
+    </div>
+
+    <div class="contact-buttons">
+      <a href="https://wa.me/263719428046?text=Hello%20Muthoni!%20I%20want%20to%20order%20or%20ask%20a%20question." class="contact-btn whatsapp">💬 Chat on WhatsApp</a>
+      <a href="tel:0719428046" class="contact-btn call">📞 Call Now</a>
+    </div>
+  </div>
+
+  <div class="contact-card">
+    <h3>Free Consultation</h3>
+    <p style="font-family: 'DM Sans'; font-size: 0.9rem; font-weight: 300; color: var(--lime); line-height: 1.6;">
+      Not sure which oil or powder suits your needs? Message Muthoni for a free 15-minute consultation. She'll guide you to exactly what your body needs right now.
+    </p>
+  </div>
+
+</section>
+
+</main>
+
+<!-- FOOTER -->
 <footer>
-  <span class="footer-name">Health By Nature</span>
-  <span class="footer-sub">By Dioces · A Solution to All Health Problems · © 2024</span>
+  <strong>MUTHONI &amp; ARCHITECTURE</strong><br>
+  Botanical Wellness Curated<br>
+  © 2025 · All rights reserved
 </footer>
 
 <script>
-function gotoScreen(id,btn){
-  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('on');});
-  document.querySelectorAll('.nav-btn').forEach(function(b){b.classList.remove('on');});
-  document.getElementById('s-'+id).classList.add('on');
-  if(btn) btn.classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
+// Navigation
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const screen = btn.dataset.screen;
+    switchScreen(screen);
+  });
+});
+
+function switchScreen(screenName) {
+  // Hide all sections
+  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
+  // Show target section
+  document.getElementById(screenName).classList.add('active');
+  // Update nav buttons
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.classList.remove('active');
+    if (btn.dataset.screen === screenName) {
+      btn.classList.add('active');
+    }
+  });
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
-function switchOil(idx,btn){
-  document.querySelectorAll('.oil-tab').forEach(function(b){b.classList.remove('on');});
-  document.querySelectorAll('.oil-panel').forEach(function(p){p.classList.remove('on');});
-  btn.classList.add('on');
-  document.getElementById('op-'+idx).classList.add('on');
+
+// Oil tabs
+function switchOil(oilName) {
+  // Hide all oil panels
+  document.querySelectorAll('.oil-panel').forEach(panel => {
+    panel.classList.remove('active');
+  });
+  // Show target panel
+  document.getElementById('panel-' + oilName).classList.add('active');
+  // Update tab buttons
+  document.querySelectorAll('.oil-tab').forEach(tab => {
+    tab.classList.remove('active');
+    if (tab.dataset.oil === oilName) {
+      tab.classList.add('active');
+    }
+  });
 }
 </script>
+
 </body>
 </html>
