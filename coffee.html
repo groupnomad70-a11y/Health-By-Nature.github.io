@@ -9,579 +9,697 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --ink:#241a0c;
-    --forest:#3c4322;
-    --forest-deep:#2a2f18;
-    --parchment:#efe3c8;
-    --parchment-deep:#e6d7b4;
-    --card:#fbf5e6;
-    --copper:#a15c33;
-    --copper-deep:#7f4726;
-    --gold:#c99a3e;
-    --line:#cdb98a;
-    --muted:#6b5d42;
-    --white:#fffdf7;
-  }
+:root {
+  --ink: #241a0c;
+  --forest: #3c4322;
+  --forest-deep: #2a2f18;
+  --parchment: #efe3c8;
+  --parchment-deep: #e6d7b4;
+  --card: #fbf5e6;
+  --copper: #a15c33;
+  --copper-deep: #7f4726;
+  --gold: #c99a3e;
+  --line: #cdb98a;
+  --muted: #6b5d42;
+  --white: #fffdf7;
+}
 
-  *{box-sizing:border-box;margin:0;padding:0;}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html{scroll-behavior:smooth;}
+html { scroll-behavior: smooth; }
 
-  body{
-    background:var(--parchment);
-    background-image:
-      radial-gradient(circle at 100% 0%, rgba(161,92,51,0.06), transparent 40%),
-      repeating-linear-gradient(0deg, rgba(36,26,12,0.025) 0px, rgba(36,26,12,0.025) 1px, transparent 1px, transparent 3px);
-    color:var(--ink);
-    font-family:'Inter',sans-serif;
-    line-height:1.65;
-    font-size:1rem;
-  }
+body {
+  background: var(--parchment);
+  background-image:
+    radial-gradient(circle at 100% 0%, rgba(161,92,51,0.06), transparent 40%),
+    repeating-linear-gradient(0deg, rgba(36,26,12,0.025) 0px, rgba(36,26,12,0.025) 1px, transparent 1px, transparent 3px);
+  color: var(--ink);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.65;
+  font-size: 1rem;
+  -webkit-font-smoothing: antialiased;
+}
 
-  a{color:inherit;}
+a { color: inherit; }
 
-  .mono{font-family:'IBM Plex Mono',monospace;}
+.mono { font-family: 'IBM Plex Mono', monospace; }
 
-  h1,h2,h3,.display{
-    font-family:'Fraunces',serif;
-    color:var(--ink);
-    font-weight:600;
-    letter-spacing:-0.01em;
-  }
+h1, h2, h3, .display {
+  font-family: 'Fraunces', serif;
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
 
-  /* ============ NAV ============ */
-  #mainNav{
-    position:sticky;
-    top:0;
-    z-index:100;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:1.5rem;
-    padding:0.9rem 2rem;
-    background:rgba(239,227,200,0.92);
-    backdrop-filter:blur(8px);
-    border-bottom:1px solid var(--line);
-  }
+/* ── NAV ── */
+#mainNav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 0.9rem 2rem;
+  background: rgba(239,227,200,0.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
 
-  .nav-mark{
-    font-family:'Fraunces',serif;
-    font-weight:700;
-    font-size:1.35rem;
-    color:var(--ink);
-    text-decoration:none;
-    letter-spacing:-0.01em;
-    white-space:nowrap;
-  }
-  .nav-mark span{color:var(--copper);font-style:italic;font-weight:500;}
+.nav-mark {
+  font-family: 'Fraunces', serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  color: var(--ink);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.nav-mark span { color: var(--copper); font-style: italic; font-weight: 500; }
 
-  .nav-links{
-    display:flex;
-    gap:1.9rem;
-    flex-wrap:wrap;
-  }
-  .nav-links a{
-    text-decoration:none;
-    font-size:0.92rem;
-    font-weight:500;
-    color:var(--forest-deep);
-    position:relative;
-    padding:0.2rem 0;
-  }
-  .nav-links a::after{
-    content:"";
-    position:absolute;
-    left:0; right:100%;
-    bottom:-2px;
-    height:2px;
-    background:var(--copper);
-    transition:right .2s ease;
-  }
-  .nav-links a:hover::after{right:0;}
+.nav-links {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--forest-deep);
+  position: relative;
+  padding: 0.2rem 0;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 100%;
+  bottom: -2px;
+  height: 2px;
+  background: var(--copper);
+  transition: right .2s ease;
+}
+.nav-links a:hover::after,
+.nav-links a[aria-current="page"]::after { right: 0; }
 
-  .nav-right{display:flex;align-items:center;gap:1rem;}
+.nav-right { display: flex; align-items: center; gap: 0.9rem; }
 
-  .nav-gh{
-    display:flex;align-items:center;gap:0.4rem;
-    text-decoration:none;
-    font-size:0.82rem;
-    color:var(--muted);
-    border:1px solid var(--line);
-    padding:0.4rem 0.7rem;
-    border-radius:999px;
-  }
-  .nav-gh svg{width:14px;height:14px;fill:var(--muted);}
-  .nav-gh:hover{color:var(--ink);border-color:var(--copper);}
+.nav-gh {
+  display: flex; align-items: center; gap: 0.4rem;
+  text-decoration: none;
+  font-size: 0.8rem;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+  transition: color .15s, border-color .15s;
+}
+.nav-gh svg { width: 14px; height: 14px; fill: currentColor; }
+.nav-gh:hover { color: var(--ink); border-color: var(--copper); }
 
-  .nav-cta{
-    text-decoration:none;
-    background:var(--copper);
-    color:var(--white);
-    font-weight:600;
-    font-size:0.88rem;
-    padding:0.55rem 1.1rem;
-    border-radius:4px;
-    letter-spacing:0.01em;
-    box-shadow:0 2px 0 var(--copper-deep);
-  }
-  .nav-cta:hover{background:var(--copper-deep);}
+.nav-cta {
+  text-decoration: none;
+  background: var(--copper);
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.55rem 1.1rem;
+  border-radius: 4px;
+  letter-spacing: 0.01em;
+  box-shadow: 0 2px 0 var(--copper-deep);
+  transition: background .15s;
+}
+.nav-cta:hover { background: var(--copper-deep); }
 
-  .nav-burger{
-    display:none;
-    flex-direction:column;
-    gap:5px;
-    background:none;
-    border:none;
-    cursor:pointer;
-    padding:0.3rem;
-  }
-  .nav-burger span{width:22px;height:2px;background:var(--ink);display:block;}
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+.nav-burger span {
+  width: 22px; height: 2px;
+  background: var(--ink);
+  display: block;
+  transition: transform .2s, opacity .2s;
+}
 
-  .mobile-menu{
-    display:none;
-    position:fixed;
-    inset:0;
-    background:var(--forest-deep);
-    z-index:200;
-    padding:2rem;
-    flex-direction:column;
-    gap:1.4rem;
-  }
-  .mobile-menu.active{display:flex;}
-  .mobile-menu a{
-    color:var(--parchment);
-    text-decoration:none;
-    font-family:'Fraunces',serif;
-    font-size:1.5rem;
-    font-weight:600;
-  }
-  .mobile-menu .close{
-    align-self:flex-end;
-    color:var(--parchment);
-    font-family:'Inter',sans-serif;
-    font-size:0.95rem;
-    cursor:pointer;
-    margin-bottom:1rem;
-  }
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--forest-deep);
+  z-index: 200;
+  padding: 2rem;
+  flex-direction: column;
+  gap: 1.3rem;
+  overflow-y: auto;
+}
+.mobile-menu.active { display: flex; }
+.mobile-menu a {
+  color: var(--parchment);
+  text-decoration: none;
+  font-family: 'Fraunces', serif;
+  font-size: 1.45rem;
+  font-weight: 600;
+}
+.mobile-menu .close {
+  align-self: flex-end;
+  color: var(--parchment);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  cursor: pointer;
+  margin-bottom: 0.8rem;
+  background: none;
+  border: none;
+}
 
-  @media (max-width:880px){
-    .nav-links{display:none;}
-    .nav-gh{display:none;}
-    .nav-burger{display:flex;}
-    #mainNav{padding:0.85rem 1.1rem;}
-  }
+@media (max-width: 920px) {
+  .nav-links, .nav-gh { display: none; }
+  .nav-burger { display: flex; }
+  #mainNav { padding: 0.85rem 1.1rem; }
+}
 
-  /* ============ SHARED LAYOUT ============ */
-  main{max-width:1080px;margin:0 auto;padding:0 1.4rem;}
+/* ── SHARED ── */
+main { max-width: 1080px; margin: 0 auto; padding: 0 1.4rem; }
 
-  .eyebrow{
-    display:inline-flex;
-    align-items:center;
-    gap:0.5rem;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.72rem;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    color:var(--copper-deep);
-    margin-bottom:0.9rem;
-  }
-  .eyebrow::before{
-    content:"";
-    width:22px;height:1px;
-    background:var(--copper-deep);
-  }
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--copper-deep);
+  margin-bottom: 0.9rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 22px; height: 1px;
+  background: var(--copper-deep);
+}
 
-  section{padding:4.2rem 0;border-bottom:1px solid var(--line);}
-  section:last-of-type{border-bottom:none;}
+section {
+  padding: 4rem 0;
+  border-bottom: 1px solid var(--line);
+}
+section:last-of-type { border-bottom: none; }
 
-  h2{font-size:clamp(1.6rem,3.4vw,2.3rem);margin-bottom:0.7rem;}
-  h2 em{color:var(--copper);font-style:italic;}
-  .section-lead{max-width:640px;color:var(--muted);font-size:1.05rem;margin-bottom:2.2rem;}
+h2 {
+  font-size: clamp(1.55rem, 3.2vw, 2.25rem);
+  margin-bottom: 0.7rem;
+}
+h2 em { color: var(--copper); font-style: italic; }
 
-  .btn{
-    display:inline-block;
-    text-decoration:none;
-    font-weight:600;
-    font-size:0.92rem;
-    padding:0.7rem 1.4rem;
-    border-radius:4px;
-  }
-  .btn-primary{background:var(--copper);color:var(--white);box-shadow:0 3px 0 var(--copper-deep);}
-  .btn-primary:hover{background:var(--copper-deep);}
-  .btn-ghost{border:1.5px solid var(--forest);color:var(--forest-deep);}
-  .btn-ghost:hover{background:var(--forest);color:var(--parchment);}
+.section-lead {
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 2.1rem;
+}
 
-  /* ============ HERO — the specimen label ============ */
-  .hero{
-    padding:3.6rem 0 3rem;
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:3rem;
-    align-items:center;
-  }
-  .hero h1{
-    font-size:clamp(2.1rem,5vw,3.4rem);
-    line-height:1.05;
-    margin-bottom:1.1rem;
-  }
-  .hero h1 em{color:var(--copper);font-style:italic;font-weight:500;}
-  .hero p.sub{color:var(--muted);font-size:1.1rem;max-width:34rem;margin-bottom:1.7rem;}
-  .hero .cta-row{display:flex;gap:0.9rem;flex-wrap:wrap;}
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.92rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: 4px;
+  transition: background .15s, color .15s;
+}
+.btn-primary {
+  background: var(--copper);
+  color: var(--white);
+  box-shadow: 0 3px 0 var(--copper-deep);
+}
+.btn-primary:hover { background: var(--copper-deep); }
+.btn-ghost {
+  border: 1.5px solid var(--forest);
+  color: var(--forest-deep);
+}
+.btn-ghost:hover {
+  background: var(--forest);
+  color: var(--parchment);
+}
 
-  /* the recurring "specimen label" signature card */
-  .specimen{
-    background:var(--card);
-    border:1.5px solid var(--ink);
-    border-radius:2px;
-    position:relative;
-    padding:1.6rem 1.6rem 1.3rem;
-    box-shadow:6px 6px 0 rgba(36,26,12,0.12);
-  }
-  .specimen::before{
-    content:"";
-    position:absolute;
-    top:-9px; left:16px; right:16px;
-    height:16px;
-    background-image:radial-gradient(circle, var(--parchment) 4px, transparent 4.2px);
-    background-size:16px 16px;
-    background-position:0 0;
-    background-repeat:repeat-x;
-  }
-  .specimen .lot{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.7rem;
-    letter-spacing:0.08em;
-    color:var(--copper-deep);
-    text-transform:uppercase;
-    margin-bottom:0.4rem;
-  }
-  .specimen h3{font-size:1.35rem;margin-bottom:0.9rem;}
-  .specimen .specs{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:0.5rem 1rem;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.78rem;
-    border-top:1px dashed var(--line);
-    padding-top:0.9rem;
-  }
-  .specimen .specs dt{color:var(--muted);text-transform:uppercase;letter-spacing:0.04em;font-size:0.68rem;}
-  .specimen .specs dd{color:var(--ink);font-weight:600;margin-bottom:0.55rem;}
-  .seal{
-    position:absolute;
-    top:-14px; right:-14px;
-    width:56px;height:56px;
-    border-radius:50%;
-    background:var(--gold);
-    display:flex;align-items:center;justify-content:center;
-    text-align:center;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.55rem;
-    font-weight:600;
-    color:var(--ink);
-    line-height:1.1;
-    transform:rotate(9deg);
-    box-shadow:0 2px 6px rgba(0,0,0,0.25);
-    border:2px solid var(--white);
-  }
+/* ── HERO ── */
+.hero {
+  padding: 3.4rem 0 2.8rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 2.8rem;
+  align-items: center;
+  border-bottom: none;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4.8vw, 3.3rem);
+  line-height: 1.08;
+  margin-bottom: 1rem;
+}
+.hero h1 em { color: var(--copper); font-style: italic; font-weight: 500; }
+.hero p.sub {
+  color: var(--muted);
+  font-size: 1.08rem;
+  max-width: 34rem;
+  margin-bottom: 1.6rem;
+}
+.hero .cta-row { display: flex; gap: 0.85rem; flex-wrap: wrap; }
 
-  /* ============ ORIGIN / ALTITUDE ============ */
-  .origin-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:2.5rem;
-    align-items:center;
-  }
-  .altitude-scale{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:1.6rem;
-  }
-  .altitude-bar{
-    position:relative;
-    height:220px;
-    display:flex;
-    align-items:flex-end;
-    gap:0.5rem;
-    padding:0 0.5rem;
-  }
-  .altitude-col{
-    flex:1;
-    background:linear-gradient(180deg, var(--forest), var(--forest-deep));
-    border-radius:3px 3px 0 0;
-    position:relative;
-    display:flex;
-    align-items:flex-start;
-    justify-content:center;
-    color:var(--parchment);
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.68rem;
-    padding-top:0.4rem;
-  }
-  .altitude-labels{
-    display:flex;gap:0.5rem;padding:0 0.5rem;margin-top:0.6rem;
-  }
-  .altitude-labels span{flex:1;text-align:center;font-size:0.68rem;color:var(--muted);font-family:'IBM Plex Mono',monospace;}
+.specimen {
+  background: var(--card);
+  border: 1.5px solid var(--ink);
+  border-radius: 2px;
+  position: relative;
+  padding: 1.55rem 1.55rem 1.25rem;
+  box-shadow: 6px 6px 0 rgba(36,26,12,0.12);
+}
+.specimen::before {
+  content: "";
+  position: absolute;
+  top: -9px; left: 16px; right: 16px;
+  height: 16px;
+  background-image: radial-gradient(circle, var(--parchment) 4px, transparent 4.2px);
+  background-size: 16px 16px;
+  background-position: 0 0;
+  background-repeat: repeat-x;
+}
+.specimen .lot {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  color: var(--copper-deep);
+  text-transform: uppercase;
+  margin-bottom: 0.35rem;
+}
+.specimen h3 { font-size: 1.3rem; margin-bottom: 0.85rem; }
+.specimen .specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.45rem 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.76rem;
+  border-top: 1px dashed var(--line);
+  padding-top: 0.85rem;
+}
+.specimen .specs dt {
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.66rem;
+}
+.specimen .specs dd {
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+.seal {
+  position: absolute;
+  top: -14px; right: -14px;
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.55rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.1;
+  transform: rotate(9deg);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+  border: 2px solid var(--white);
+}
 
-  .stat-list{display:flex;flex-direction:column;gap:1.3rem;}
-  .stat-item{display:flex;gap:1rem;align-items:flex-start;}
-  .stat-num{
-    font-family:'Fraunces',serif;
-    font-size:1.9rem;
-    font-weight:700;
-    color:var(--copper);
-    flex-shrink:0;
-    min-width:4.2rem;
-  }
-  .stat-item p{color:var(--muted);font-size:0.95rem;}
-  .stat-item strong{color:var(--ink);}
+/* ── ORIGIN ── */
+.origin-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.4rem;
+  align-items: center;
+}
+.altitude-scale {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.5rem;
+}
+.altitude-bar {
+  position: relative;
+  height: 210px;
+  display: flex;
+  align-items: flex-end;
+  gap: 0.5rem;
+  padding: 0 0.4rem;
+}
+.altitude-col {
+  flex: 1;
+  background: linear-gradient(180deg, var(--forest), var(--forest-deep));
+  border-radius: 3px 3px 0 0;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--parchment);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.65rem;
+  padding-top: 0.35rem;
+  min-width: 0;
+}
+.altitude-labels {
+  display: flex; gap: 0.5rem;
+  padding: 0 0.4rem;
+  margin-top: 0.55rem;
+}
+.altitude-labels span {
+  flex: 1;
+  text-align: center;
+  font-size: 0.66rem;
+  color: var(--muted);
+  font-family: 'IBM Plex Mono', monospace;
+}
 
-  /* ============ PROCESS TABLE / CARDS ============ */
-  .process-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:1.3rem;
-  }
-  .process-card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:1.3rem 1.4rem;
-    display:flex;
-    flex-direction:column;
-    gap:0.7rem;
-  }
-  .process-card .tag{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.65rem;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    color:var(--copper-deep);
-    background:rgba(161,92,51,0.1);
-    display:inline-block;
-    padding:0.2rem 0.5rem;
-    border-radius:3px;
-    width:fit-content;
-  }
-  .process-card h3{font-size:1.15rem;}
-  .process-card p{color:var(--muted);font-size:0.92rem;flex-grow:1;}
-  .process-card .shop-link{
-    font-size:0.85rem;
-    font-weight:600;
-    color:var(--copper);
-    text-decoration:none;
-    border-top:1px dashed var(--line);
-    padding-top:0.7rem;
-  }
-  .process-card .shop-link:hover{color:var(--copper-deep);text-decoration:underline;}
+.stat-list { display: flex; flex-direction: column; gap: 1.25rem; }
+.stat-item { display: flex; gap: 1rem; align-items: flex-start; }
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--copper);
+  flex-shrink: 0;
+  min-width: 4rem;
+}
+.stat-item p { color: var(--muted); font-size: 0.94rem; }
+.stat-item strong { color: var(--ink); }
 
-  /* ============ BREW METHOD GUIDE ============ */
-  .brew-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:1.4rem;
-  }
-  .brew-card{
-    background:var(--white);
-    border:1px solid var(--line);
-    border-radius:8px;
-    overflow:hidden;
-    display:flex;
-    flex-direction:column;
-  }
-  .brew-card .icon-band{
-    background:var(--forest);
-    padding:1.4rem;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .brew-card .icon-band svg{width:52px;height:52px;}
-  .brew-card .body{padding:1.2rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:0.6rem;flex-grow:1;}
-  .brew-card h3{font-size:1.1rem;}
-  .brew-card p{font-size:0.9rem;color:var(--muted);}
-  .brew-card .use-list{list-style:none;font-size:0.85rem;font-family:'IBM Plex Mono',monospace;color:var(--forest-deep);margin-top:0.3rem;}
-  .brew-card .use-list li{padding:0.15rem 0;}
-  .brew-card .use-list li::before{content:"— ";color:var(--copper);}
-  .brew-card .health-note{
-    margin-top:auto;
-    font-size:0.8rem;
-    background:rgba(60,67,34,0.07);
-    border-left:3px solid var(--forest);
-    padding:0.55rem 0.7rem;
-    border-radius:0 4px 4px 0;
-    color:var(--forest-deep);
-  }
+/* ── PROCESS ── */
+.process-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+}
+.process-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  transition: box-shadow .2s, transform .2s;
+}
+.process-card:hover {
+  box-shadow: 0 6px 18px rgba(36,26,12,0.08);
+  transform: translateY(-2px);
+}
+.process-card .tag {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--copper-deep);
+  background: rgba(161,92,51,0.1);
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 3px;
+  width: fit-content;
+}
+.process-card h3 { font-size: 1.12rem; }
+.process-card p { color: var(--muted); font-size: 0.9rem; flex-grow: 1; }
+.process-card .shop-link {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--copper);
+  text-decoration: none;
+  border-top: 1px dashed var(--line);
+  padding-top: 0.65rem;
+}
+.process-card .shop-link:hover { color: var(--copper-deep); text-decoration: underline; }
 
-  /* ============ HOUSE DRIPPER / STEPS ============ */
-  .steps{counter-reset:step;list-style:none;display:flex;flex-direction:column;gap:1.5rem;}
-  .steps li{position:relative;padding-left:3.4rem;}
-  .steps li::before{
-    counter-increment:step;
-    content:"LOT " counter(step,decimal-leading-zero);
-    position:absolute;left:0;top:0.1rem;
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.62rem;
-    color:var(--white);
-    background:var(--copper);
-    padding:0.35rem 0.4rem;
-    border-radius:3px;
-    line-height:1;
-    width:2.8rem;
-    text-align:center;
-  }
-  .steps h4{font-size:1.05rem;margin-bottom:0.25rem;}
-  .steps p{color:var(--muted);font-size:0.94rem;}
+/* ── BREW ── */
+.brew-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.3rem;
+}
+.brew-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow .2s;
+}
+.brew-card:hover { box-shadow: 0 8px 22px rgba(36,26,12,0.1); }
+.brew-card .icon-band {
+  background: var(--forest);
+  padding: 1.3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.brew-card .icon-band svg { width: 50px; height: 50px; }
+.brew-card .body {
+  padding: 1.15rem 1.25rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  flex-grow: 1;
+}
+.brew-card h3 { font-size: 1.08rem; }
+.brew-card p { font-size: 0.9rem; color: var(--muted); }
+.brew-card .use-list {
+  list-style: none;
+  font-size: 0.84rem;
+  font-family: 'IBM Plex Mono', monospace;
+  color: var(--forest-deep);
+  margin-top: 0.25rem;
+}
+.brew-card .use-list li { padding: 0.12rem 0; }
+.brew-card .use-list li::before { content: "— "; color: var(--copper); }
+.brew-card .health-note {
+  margin-top: auto;
+  font-size: 0.78rem;
+  background: rgba(60,67,34,0.07);
+  border-left: 3px solid var(--forest);
+  padding: 0.5rem 0.65rem;
+  border-radius: 0 4px 4px 0;
+  color: var(--forest-deep);
+}
 
-  .table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--card);margin-top:1.6rem;}
-  table{width:100%;border-collapse:collapse;font-size:0.88rem;}
-  th,td{padding:0.75rem 0.9rem;text-align:left;border-bottom:1px solid var(--line);}
-  th{background:var(--forest);color:var(--parchment);font-weight:600;font-family:'IBM Plex Mono',monospace;font-size:0.72rem;text-transform:uppercase;letter-spacing:0.04em;}
-  tr:last-child td{border-bottom:none;}
-  tr:nth-child(even) td{background:rgba(205,185,138,0.12);}
-  .win{color:var(--copper-deep);font-weight:700;}
+/* ── STEPS + TABLE ── */
+.steps {
+  counter-reset: step;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+.steps li { position: relative; padding-left: 3.4rem; }
+.steps li::before {
+  counter-increment: step;
+  content: "LOT " counter(step, decimal-leading-zero);
+  position: absolute; left: 0; top: 0.1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--white);
+  background: var(--copper);
+  padding: 0.32rem 0.35rem;
+  border-radius: 3px;
+  line-height: 1;
+  width: 2.75rem;
+  text-align: center;
+}
+.steps h4 { font-size: 1.05rem; margin-bottom: 0.2rem; }
+.steps p { color: var(--muted); font-size: 0.93rem; }
 
-  /* ============ BEYOND THE BEAN ============ */
-  .byproduct-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.3rem;}
-  .byproduct-card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:1.2rem 1.3rem;
-    text-align:left;
-  }
-  .byproduct-card .badge{
-    font-family:'IBM Plex Mono',monospace;
-    font-size:0.65rem;
-    color:var(--white);
-    background:var(--forest);
-    padding:0.15rem 0.5rem;
-    border-radius:3px;
-    display:inline-block;
-    margin-bottom:0.6rem;
-  }
-  .byproduct-card h3{font-size:1.05rem;margin-bottom:0.4rem;}
-  .byproduct-card p{font-size:0.88rem;color:var(--muted);margin-bottom:0.8rem;}
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: var(--card);
+  margin-top: 1.5rem;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.86rem;
+}
+th, td {
+  padding: 0.7rem 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--line);
+}
+th {
+  background: var(--forest);
+  color: var(--parchment);
+  font-weight: 600;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+tr:last-child td { border-bottom: none; }
+tr:nth-child(even) td { background: rgba(205,185,138,0.12); }
+.win { color: var(--copper-deep); font-weight: 700; }
 
-  /* ============ PERSONALISE / HEALTH ============ */
-  .quiz-band{
-    background:var(--forest-deep);
-    color:var(--parchment);
-    border-radius:10px;
-    padding:2.4rem 2rem;
-    display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:2rem;
-    align-items:center;
-  }
-  .quiz-band h2{color:var(--parchment);}
-  .quiz-band .section-lead{color:rgba(239,227,200,0.8);}
-  .quiz-band .btn-primary{box-shadow:0 3px 0 var(--copper-deep);}
+/* ── BYPRODUCTS ── */
+.byproduct-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+.byproduct-card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.15rem 1.25rem;
+}
+.byproduct-card .badge {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.64rem;
+  color: var(--white);
+  background: var(--forest);
+  padding: 0.15rem 0.5rem;
+  border-radius: 3px;
+  display: inline-block;
+  margin-bottom: 0.55rem;
+}
+.byproduct-card h3 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+.byproduct-card p { font-size: 0.88rem; color: var(--muted); margin-bottom: 0.75rem; }
+.byproduct-card .shop-link {
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--copper);
+  text-decoration: none;
+}
+.byproduct-card .shop-link:hover { text-decoration: underline; }
 
-  .health-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
-    gap:1.2rem;
-    margin-top:1rem;
-  }
-  .health-item{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding:1.1rem 1.2rem;
-  }
-  .health-item .eyebrow{margin-bottom:0.5rem;font-size:0.66rem;}
-  .health-item p{font-size:0.88rem;color:var(--muted);}
+/* ── HEALTH / QUIZ ── */
+.health-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.15rem;
+  margin-top: 0.8rem;
+}
+.health-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1.05rem 1.15rem;
+}
+.health-item .eyebrow { margin-bottom: 0.45rem; font-size: 0.64rem; }
+.health-item p { font-size: 0.88rem; color: var(--muted); }
 
-  /* ============ FOOTER ============ */
-  footer{
-    background:var(--ink);
-    color:var(--parchment);
-    padding:2.6rem 1.4rem 2rem;
-  }
-  .footer-inner{max-width:1080px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;}
-  footer a{color:var(--gold);text-decoration:none;}
-  footer .fine{font-size:0.8rem;color:rgba(239,227,200,0.55);max-width:38rem;margin-top:1.2rem;}
+.quiz-band {
+  background: var(--forest-deep);
+  color: var(--parchment);
+  border-radius: 10px;
+  padding: 2.3rem 1.9rem;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 1.9rem;
+  align-items: center;
+  margin-top: 2.3rem;
+}
+.quiz-band h2 { color: var(--parchment); }
+.quiz-band .section-lead { color: rgba(239,227,200,0.8); margin-bottom: 1.2rem; }
+.quiz-band .btn-primary { box-shadow: 0 3px 0 var(--copper-deep); }
 
-  @media (max-width:760px){
-    .hero{grid-template-columns:1fr;}
-    .origin-grid{grid-template-columns:1fr;}
-    .quiz-band{grid-template-columns:1fr;}
-  }
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  color: var(--parchment);
+  padding: 2.5rem 1.4rem 2rem;
+}
+.footer-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+footer a { color: var(--gold); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+footer .fine {
+  font-size: 0.8rem;
+  color: rgba(239,227,200,0.55);
+  max-width: 38rem;
+  margin-top: 1.1rem;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 760px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; }
+  .origin-grid { grid-template-columns: 1fr; }
+  .quiz-band { grid-template-columns: 1fr; }
+  .specimen .specs { grid-template-columns: 1fr 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
 </style>
 </head>
 <body>
 
-<!-- Mobile menu overlay -->
-<!-- Mobile menu -->
-<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation">
-    <span class="close" id="menuClose" aria-label="Close menu">✕ Close</span>
-    <a href="index.html" onclick="closeMobileMenu()">Home</a>
-    <a href="product.html" onclick="closeMobileMenu()">Coffee Collection</a>
-    <a href="gibbs_luxury_coffee_homepage.html" onclick="closeMobileMenu()">Luxury Coffee</a>
-    <a href="soil_classification_lecture.html" onclick="closeMobileMenu()">Coffee Academy</a>
-    <a href="moringa_sunday_school_repository.html" onclick="closeMobileMenu()">Repository</a>
-    <a href="payment.html" onclick="closeMobileMenu()">Payment</a>
-    <a href="coffee.html" onclick="closeMobileMenu()">Research</a>
-    <a href="success.html" onclick="closeMobileMenu()">Success</a>
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation" aria-modal="true">
+  <button class="close" id="menuClose" aria-label="Close menu">✕ Close</button>
+  <a href="index.html" onclick="closeMobileMenu()">Home</a>
+  <a href="product.html" onclick="closeMobileMenu()">Coffee Collection</a>
+  <a href="gibbs_luxury_coffee_homepage.html" onclick="closeMobileMenu()">Luxury Coffee</a>
+  <a href="soil_classification_lecture.html" onclick="closeMobileMenu()">Coffee Academy</a>
+  <a href="moringa_sunday_school_repository.html" onclick="closeMobileMenu()">Repository</a>
+  <a href="payment.html" onclick="closeMobileMenu()">Payment</a>
+  <a href="coffee.html" onclick="closeMobileMenu()" aria-current="page">Research</a>
+  <a href="internet.html" onclick="closeMobileMenu()">Internet Layers</a>
+  <a href="success.html" onclick="closeMobileMenu()">Success</a>
 </div>
-<nav id="mainNav">
-    <a href="index.html" class="nav-mark">
-        Rustic <span>Garden</span>
+
+<nav id="mainNav" aria-label="Primary">
+  <a href="index.html" class="nav-mark">Rustic <span>Garden</span></a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="product.html">Coffee Collection</a>
+    <a href="gibbs_luxury_coffee_homepage.html">Luxury Coffee</a>
+    <a href="soil_classification_lecture.html">Coffee Academy</a>
+    <a href="moringa_sunday_school_repository.html">Repository</a>
+    <a href="payment.html">Payment</a>
+    <a href="coffee.html" aria-current="page">Research</a>
+    <a href="internet.html">Internet Layers</a>
+  </div>
+  <div class="nav-right">
+    <a href="https://github.com/groupdougie/Gibbs_Coffee"
+       class="nav-gh"
+       target="_blank"
+       rel="noopener noreferrer"
+       aria-label="GitHub repository">
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+      </svg>
+      Source
     </a>
-    <div class="nav-links">
-        <a href="index.html">Home</a>
-        <a href="product.html">Coffee Collection</a>
-        <a href="gibbs_luxury_coffee_homepage.html">Luxury Coffee</a>
-        <a href="soil_classification_lecture.html">Coffee Academy</a>
-        <a href="moringa_sunday_school_repository.html">Repository</a>
-        <a href="payment.html">Payment</a>
-        <a href="coffee.html">Research</a>
-    </div>
-    <div class="nav-right">
-        <a href="https://github.com/groupdougie/Gibbs_Coffee"
-           class="nav-gh"
-           target="_blank"
-           rel="noopener"
-           aria-label="GitHub Repository">
-            <svg viewBox="0 0 16 16" aria-hidden="true">
-                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38
-                0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13
-                -.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87
-                2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95
-                0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12
-                0 0 .67-.21 2.2.82.64-.18 1.32-.27
-                2-.27.68 0 1.36.09 2 .27
-                1.53-1.04 2.2-.82 2.2-.82.44
-                1.1.16 1.92.08 2.12.51.56.82
-                1.27.82 2.15 0 3.07-1.87
-                3.75-3.65 3.95.29.25.54.73.54
-                1.48 0 1.07-.01 1.93-.01
-                2.2 0 .21.15.46.55.38A8.013
-                8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
-            </svg>
-            Source
-        </a>
-        <a class="nav-cta" href="checkout.html">
-            Order Coffee
-        </a>
-        <button class="nav-burger"
-                id="burgerBtn"
-                aria-label="Open menu"
-                aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </div>
+    <a class="nav-cta" href="checkout.html">Order Coffee</a>
+    <button class="nav-burger"
+            id="burgerBtn"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </nav>
 
 <main>
 
-  <!-- ============ HERO ============ -->
-  <section class="hero" style="border-bottom:none;">
+  <!-- HERO -->
+  <section class="hero">
     <div>
       <div class="eyebrow">Research-grade sourcing</div>
       <h1>Every cup starts as a <em>decision</em>, not an accident.</h1>
@@ -591,13 +709,13 @@
         <a href="#brew-guide" class="btn btn-ghost">Find your brew method</a>
       </div>
     </div>
-    <div class="specimen">
+    <div class="specimen" aria-label="Sample lot specification">
       <div class="seal">SPECIALTY<br>GRADE</div>
       <div class="lot">LOT № RG-2607 · WASHED · ARABICA</div>
       <h3>Kirinyaga Highland Reserve</h3>
       <dl class="specs">
         <dt>Altitude</dt><dd>1,780 m a.s.l.</dd>
-        <dt>Soil</dt><dd>Volcanic, pH 6.1</dt>
+        <dt>Soil</dt><dd>Volcanic, pH 6.1</dd>
         <dt>Process</dt><dd>Washed, 48h ferment</dd>
         <dt>Aspect</dt><dd>East-facing slope</dd>
         <dt>Best brew</dt><dd>Paper filter</dd>
@@ -606,14 +724,14 @@
     </div>
   </section>
 
-  <!-- ============ ORIGIN / ALTITUDE ============ -->
+  <!-- ORIGIN -->
   <section id="origin">
     <div class="eyebrow">Where the bean grows</div>
     <h2>Altitude sets the <em>ceiling</em> for what any process can achieve</h2>
     <p class="section-lead">Cooler, slower ripening at elevation lets cherries build sugars, chlorogenic acids and trigonelline before harvest. Ethiopian trial data found that soil temperature and chemistry alone explained 72.3% of the variation in cup quality — which is why every Rustic Garden lot lists its elevation before its flavour notes.</p>
 
     <div class="origin-grid">
-      <div class="altitude-scale">
+      <div class="altitude-scale" role="img" aria-label="Altitude quality scale from 600m commodity to 1500-1800m reserve">
         <div class="altitude-bar">
           <div class="altitude-col" style="height:38%;">600–900m</div>
           <div class="altitude-col" style="height:60%;">900–1200m</div>
@@ -641,49 +759,49 @@
     </div>
   </section>
 
-  <!-- ============ PROCESSING ============ -->
+  <!-- PROCESS -->
   <section id="process">
     <div class="eyebrow">What happens after the harvest</div>
     <h2>Choose your <em>process</em>, choose your cup</h2>
     <p class="section-lead">Processing method is the single strongest lever on flavour — it decides which acids, sugars and aromatics survive into the bag. Pick the profile you want, and we'll point you to the lot built for it.</p>
 
     <div class="process-grid">
-      <div class="process-card">
+      <article class="process-card">
         <span class="tag">Bright &amp; clean</span>
         <h3>Washed</h3>
         <p>Pulp fully removed, fermented 24–72 hours, then washed. Chlorogenic and malic acid dominate, giving the clarity and acidity classic single-origin drinkers chase.</p>
         <a href="product.html" class="shop-link">Shop washed lots →</a>
-      </div>
-      <div class="process-card">
+      </article>
+      <article class="process-card">
         <span class="tag">Fruit-forward</span>
         <h3>Natural</h3>
         <p>Whole cherry dried in the sun. Fructose and GABA carry through for a full-bodied, jammy sweetness with almost no acidity to cut it.</p>
         <a href="product.html" class="shop-link">Shop natural lots →</a>
-      </div>
-      <div class="process-card">
+      </article>
+      <article class="process-card">
         <span class="tag">Best of both</span>
         <h3>Honey</h3>
         <p>Skin off, mucilage on during drying. Extended 240-hour ferments measured 15% sweeter, more consistent cups — and use roughly a tenth of the water washing does.</p>
         <a href="product.html" class="shop-link">Shop honey lots →</a>
-      </div>
-      <div class="process-card">
+      </article>
+      <article class="process-card">
         <span class="tag">For the adventurous</span>
         <h3>Anaerobic</h3>
         <p>Sealed, oxygen-free fermentation drives lactic acid accumulation for an intense, wine-like cup unlike anything strip-picked coffee can produce.</p>
         <a href="product.html" class="shop-link">Shop anaerobic lots →</a>
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- ============ BREW GUIDE ============ -->
+  <!-- BREW GUIDE -->
   <section id="brew-guide">
     <div class="eyebrow">Serve it right</div>
     <h2>The brew method decides what leaves the cup — <em>and what stays in it</em></h2>
     <p class="section-lead">The same bean, brewed four ways, delivers four different bodies of compounds. Match the method to what you actually want out of your coffee, including your lipid profile.</p>
 
     <div class="brew-grid">
-      <div class="brew-card">
-        <div class="icon-band">
+      <article class="brew-card">
+        <div class="icon-band" aria-hidden="true">
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M18 14h28l-6 34a6 6 0 0 1-6 5H30a6 6 0 0 1-6-5L18 14z" stroke="#efe3c8" stroke-width="2.5"/>
             <path d="M14 14h36" stroke="#efe3c8" stroke-width="2.5" stroke-linecap="round"/>
@@ -700,10 +818,10 @@
           </ul>
           <div class="health-note">Near-zero cafestol/kahweol — the choice for anyone managing LDL cholesterol.</div>
         </div>
-      </div>
+      </article>
 
-      <div class="brew-card">
-        <div class="icon-band">
+      <article class="brew-card">
+        <div class="icon-band" aria-hidden="true">
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="16" y="10" width="32" height="40" rx="4" stroke="#efe3c8" stroke-width="2.5"/>
             <line x1="32" y1="14" x2="32" y2="46" stroke="#c99a3e" stroke-width="2.5"/>
@@ -720,10 +838,10 @@
           </ul>
           <div class="health-note">Highest diterpene retention — enjoy it, but not the cup to default to daily if LDL is a concern.</div>
         </div>
-      </div>
+      </article>
 
-      <div class="brew-card">
-        <div class="icon-band">
+      <article class="brew-card">
+        <div class="icon-band" aria-hidden="true">
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M20 40h24v6a6 6 0 0 1-6 6H26a6 6 0 0 1-6-6v-6z" stroke="#efe3c8" stroke-width="2.5"/>
             <path d="M22 40l4-18h12l4 18" stroke="#efe3c8" stroke-width="2.5"/>
@@ -739,10 +857,10 @@
           </ul>
           <div class="health-note">Moderate diterpene levels — a middle ground between filter and plunger.</div>
         </div>
-      </div>
+      </article>
 
-      <div class="brew-card">
-        <div class="icon-band">
+      <article class="brew-card">
+        <div class="icon-band" aria-hidden="true">
           <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
             <rect x="18" y="18" width="28" height="30" rx="14" stroke="#efe3c8" stroke-width="2.5"/>
             <circle cx="26" cy="30" r="2" fill="#c99a3e"/>
@@ -759,11 +877,11 @@
           </ul>
           <div class="health-note">Diterpene levels vary by filtration — finish through paper if cholesterol is a factor.</div>
         </div>
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- ============ HOUSE DRIPPER STUDY ============ -->
+  <!-- HOUSE DRIPPER -->
   <section id="dripper">
     <div class="eyebrow">Why our dripper looks the way it does</div>
     <h2>We built our house dripper around a <em>peer-reviewed</em> filter-cup study</h2>
@@ -784,10 +902,15 @@
       </li>
     </ol>
 
-    <div class="table-wrap">
+    <div class="table-wrap" role="region" aria-label="Comparative extraction results">
       <table>
         <thead>
-          <tr><th>Measure</th><th>Ridged design (best)</th><th>Grooved design</th><th>Standard cone</th></tr>
+          <tr>
+            <th scope="col">Measure</th>
+            <th scope="col">Ridged design (best)</th>
+            <th scope="col">Grooved design</th>
+            <th scope="col">Standard cone</th>
+          </tr>
         </thead>
         <tbody>
           <tr><td>Caffeine</td><td class="win">Highest</td><td>Middle</td><td>Lowest</td></tr>
@@ -799,43 +922,43 @@
         </tbody>
       </table>
     </div>
-    <p style="margin-top:1.4rem;color:var(--muted);font-size:0.92rem;max-width:640px;">Numbers sit well inside published ranges for filter coffee (caffeine roughly 360–1580 ppm, chlorogenic acid 150–470 ppm). The researchers were careful to note that lab chemistry isn't the same as taste — enjoyment still comes down to your own palate, which is why we back every dripper with a fit-your-taste guarantee.</p>
-    <a href="product.html" class="btn btn-primary" style="margin-top:1.4rem;">Shop the house dripper</a>
+    <p style="margin-top:1.3rem;color:var(--muted);font-size:0.92rem;max-width:640px;">Numbers sit well inside published ranges for filter coffee (caffeine roughly 360–1580 ppm, chlorogenic acid 150–470 ppm). The researchers were careful to note that lab chemistry is not the same as taste — enjoyment still comes down to your own palate, which is why we back every dripper with a fit-your-taste guarantee.</p>
+    <a href="product.html" class="btn btn-primary" style="margin-top:1.3rem;">Shop the house dripper</a>
   </section>
 
-  <!-- ============ BEYOND THE BEAN ============ -->
+  <!-- BYPRODUCTS -->
   <section id="byproducts">
     <div class="eyebrow">Nothing goes to waste</div>
     <h2>Beyond the bean: <em>cascara, silverskin &amp; grounds</em></h2>
     <p class="section-lead">Every stage of processing throws off a by-product that specialty research is turning into its own category. We bottle and bag the ones worth keeping.</p>
 
     <div class="byproduct-grid">
-      <div class="byproduct-card">
+      <article class="byproduct-card">
         <span class="badge">~1/4 the caffeine</span>
         <h3>Cascara (cherry tea)</h3>
         <p>Dried cherry husk steeped 4–6 minutes at 70–80°C. Tastes closer to hibiscus or tamarind than coffee — a bright, low-caffeine afternoon option.</p>
         <a href="product.html" class="shop-link">Shop cascara →</a>
-      </div>
-      <div class="byproduct-card">
+      </article>
+      <article class="byproduct-card">
         <span class="badge">Fibre + antioxidants</span>
         <h3>Silverskin</h3>
         <p>The papery skin lost in roasting, milled into baked goods for fibre and polyphenols without changing the taste of the bake.</p>
         <a href="product.html" class="shop-link">Shop silverskin →</a>
-      </div>
-      <div class="byproduct-card">
+      </article>
+      <article class="byproduct-card">
         <span class="badge">Garden-ready</span>
         <h3>Spent grounds</h3>
         <p>Nitrogen-mild, pH-neutral once brewed — a genuinely good compost activator, not the soil acidifier folklore claims.</p>
         <a href="product.html" class="shop-link">Shop compost bundles →</a>
-      </div>
+      </article>
     </div>
   </section>
 
-  <!-- ============ HEALTH / PERSONALISATION ============ -->
+  <!-- PERSONALISE -->
   <section id="personalise">
     <div class="eyebrow">Built for your body</div>
     <h2>The right cup depends on more than <em>taste</em></h2>
-    <p class="section-lead">Coffee's cardiometabolic upside — lower cardiovascular, type 2 diabetes and neurodegenerative disease risk at moderate intake — holds up across age, sex and geography. But a few personal variables still change what "moderate" and "right" mean for you.</p>
+    <p class="section-lead">Coffee's cardiometabolic upside — lower cardiovascular, type 2 diabetes and neurodegenerative disease risk at moderate intake — holds up across age, sex and geography. But a few personal variables still change what “moderate” and “right” mean for you.</p>
 
     <div class="health-grid">
       <div class="health-item">
@@ -852,13 +975,13 @@
       </div>
       <div class="health-item">
         <div class="eyebrow">Pregnancy</div>
-        <p>Guidance holds at <strong>under 200mg/day</strong> of caffeine, with many clinicians recommending decaf through the first trimester.</p>
+        <p>Guidance holds at <strong>under 200 mg/day</strong> of caffeine, with many clinicians recommending decaf through the first trimester.</p>
       </div>
     </div>
 
-    <div class="quiz-band" style="margin-top:2.4rem;">
+    <div class="quiz-band">
       <div>
-        <h2 style="font-size:1.6rem;">Not sure where to start?</h2>
+        <h2 style="font-size:1.55rem;">Not sure where to start?</h2>
         <p class="section-lead">Answer four questions on your palate, brew gear and how sensitive you are to caffeine — we'll match you to an origin, process and roast.</p>
         <a href="product.html" class="btn btn-primary">Take the two-minute quiz</a>
       </div>
@@ -885,7 +1008,8 @@
     </div>
     <div>
       <a href="product.html">Shop the collection</a><br><br>
-      <a href="checkout.html">Order coffee</a>
+      <a href="checkout.html">Order coffee</a><br><br>
+      <a href="internet.html">How the Internet is layered</a>
     </div>
   </div>
 </footer>
@@ -895,17 +1019,23 @@
   const mobileMenu = document.getElementById('mobileMenu');
   const menuClose = document.getElementById('menuClose');
 
-  function openMobileMenu(){
+  function openMobileMenu() {
     mobileMenu.classList.add('active');
-    burgerBtn.setAttribute('aria-expanded','true');
+    burgerBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
   }
-  function closeMobileMenu(){
+  function closeMobileMenu() {
     mobileMenu.classList.remove('active');
-    burgerBtn.setAttribute('aria-expanded','false');
+    burgerBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
   }
 
   burgerBtn.addEventListener('click', openMobileMenu);
   menuClose.addEventListener('click', closeMobileMenu);
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && mobileMenu.classList.contains('active')) closeMobileMenu();
+  });
 </script>
 
 </body>
